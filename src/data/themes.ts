@@ -1,0 +1,223 @@
+import type { Theme } from "./types";
+
+export const themes: Theme[] = [
+  {
+    id: "idolatry",
+    name: "Idolatry",
+    summary: "Worshiping created things — images, other gods, or human institutions — in place of the LORD.",
+    explanation: [
+      "Idolatry runs through the entire Elijah narrative in two related forms: Jeroboam's golden calves (a distorted image of the true God) and Ahab and Jezebel's imported Baal worship (an entirely different god). Both are treated by the biblical writers as fundamentally the same sin — exchanging the LORD's exclusive claim on Israel's worship for something manageable, local, or politically convenient.",
+      "The second commandment (Exodus 20:4-6) forbids not just other gods but images of the true God, which is precisely Jeroboam's error. Ahab's is more direct: full-blown worship of a rival deity. Elijah's Carmel challenge exposes idolatry's basic irrationality — a god who cannot even answer his own prophets is not a god at all (1 Kings 18:26-29).",
+    ],
+    passages: [
+      { ref: "Exodus 20:4-6", note: "The second commandment." },
+      { ref: "1 Kings 12:28-30", note: "Jeroboam's golden calves." },
+      { ref: "1 Kings 16:31-33", note: "Ahab's Baal temple." },
+      { ref: "1 Kings 18:20-40", note: "Carmel exposes Baal's impotence." },
+      { ref: "Romans 1:21-23", note: "Idolatry as exchanging the truth of God for images." },
+    ],
+    relatedThemeIds: ["baal", "covenant", "judgment"],
+    relatedPersonIds: ["jeroboam", "ahab", "jezebel", "elijah"],
+    weekRefs: [1, 2],
+  },
+  {
+    id: "baal",
+    name: "Baal",
+    summary: "A Canaanite storm-and-fertility deity whose worship Ahab and Jezebel institutionalized in Israel.",
+    explanation: [
+      "Baal ('lord' or 'master') was the leading storm and fertility god of Canaanite religion, believed to control rain, dew, and agricultural abundance — precisely the domain Elijah's drought and Carmel confrontation target. Ancient Near Eastern texts recovered at Ugarit describe Baal's mythology in detail, providing important historical background (not biblical text) for understanding why the contest is framed the way it is.",
+      "By announcing a drought and then calling down fire and rain himself, Elijah stages a direct, public rebuttal on Baal's own claimed turf: if Baal cannot even produce rain or answer with fire, his claim to deity collapses.",
+    ],
+    passages: [
+      { ref: "Judges 6:25-32", note: "Gideon tears down a Baal altar generations earlier." },
+      { ref: "1 Kings 16:31-33", note: "Ahab institutionalizes Baal worship." },
+      { ref: "1 Kings 18:20-40", note: "The Carmel contest." },
+      { ref: "Hosea 2:16-17", note: "The prophet Hosea plays on Baal's meaning ('master') versus 'my husband.'" },
+    ],
+    relatedThemeIds: ["idolatry", "rain", "fire"],
+    relatedPersonIds: ["ahab", "jezebel", "elijah"],
+    weekRefs: [2],
+  },
+  {
+    id: "rain",
+    name: "Rain",
+    summary: "Control of rain is the central, concrete battleground between the LORD and Baal in Elijah's ministry.",
+    explanation: [
+      "Because Baal was worshiped specifically as a storm and fertility god, the LORD's withholding and later restoring of rain through Elijah's word is not incidental stage-setting — it is the argument. Deuteronomy 11:13-17 had already warned that turning to other gods would result in the LORD shutting up the heavens, so the drought is itself a covenant curse in action, not merely a demonstration of raw power.",
+      "The question 1 Kings 17-18 poses is not abstract theology but a very practical one for an agricultural society: who actually controls whether crops grow and people eat?",
+    ],
+    passages: [
+      { ref: "Deuteronomy 11:13-17", note: "Rain as a covenant blessing/curse." },
+      { ref: "1 Kings 17:1", note: "Elijah announces the drought." },
+      { ref: "1 Kings 18:41-46", note: "Rain returns after Carmel." },
+      { ref: "James 5:17-18", note: "James cites the drought and rain as a model of effective prayer." },
+    ],
+    relatedThemeIds: ["baal", "fire", "judgment"],
+    relatedPersonIds: ["elijah", "ahab"],
+    weekRefs: [2],
+  },
+  {
+    id: "fire",
+    name: "Fire",
+    summary: "Fire from heaven authenticates the LORD's presence and prophetic word at key turning points.",
+    explanation: [
+      "Fire falling in answer to Elijah's prayer on Mount Carmel (1 Kings 18:38) is the dramatic center of the entire Elijah narrative, publicly vindicating both the LORD's deity and Elijah's prophetic office in a single, unambiguous sign. Fire also consumes the soldiers sent to arrest Elijah in 2 Kings 1, reinforcing that this is not a one-time trick but characteristic of how the LORD authenticates Elijah specifically.",
+      "This 'calling down fire' association is significant enough that it becomes one of the details later associated with the two witnesses of Revelation 11:5, part of why some interpreters see an Elijah figure among them (see the Theology section on Revelation 11 for a full discussion of the range of views).",
+    ],
+    passages: [
+      { ref: "1 Kings 18:36-39", note: "Fire falls on Carmel." },
+      { ref: "2 Kings 1:9-12", note: "Fire consumes soldiers sent against Elijah." },
+      { ref: "Revelation 11:5", note: "The two witnesses can call down fire — see Interpretive Perspectives." },
+    ],
+    relatedThemeIds: ["baal", "rain", "judgment"],
+    relatedPersonIds: ["elijah"],
+    weekRefs: [2, 4],
+  },
+  {
+    id: "covenant",
+    name: "Covenant",
+    summary: "The binding relationship God establishes with His people, with promises and obligations on both sides.",
+    explanation: [
+      "The Mosaic covenant at Sinai/Horeb sets the terms Israel's kings and people are held to throughout Kings; the Davidic covenant (2 Samuel 7) adds the promise of an eternal dynasty that survives even Judah's worst kings and ultimately narrows to Jesus. Elijah's whole ministry functions as a covenant lawsuit — calling Israel back to exclusive loyalty to the LORD, the first and most basic covenant demand (Exodus 20:3).",
+      "Prophets, including Elijah, are best understood not primarily as future-predictors but as covenant messengers — enforcing the terms Moses already laid down, not introducing new religion.",
+    ],
+    passages: [
+      { ref: "Exodus 19-24", note: "The Mosaic covenant given at Sinai." },
+      { ref: "2 Samuel 7", note: "The Davidic covenant." },
+      { ref: "1 Kings 19:10, 14", note: "Elijah laments Israel has 'forsaken your covenant.'" },
+      { ref: "Jeremiah 31:31-34", note: "The promise of a new covenant." },
+      { ref: "Hebrews 8", note: "Christ as mediator of a better covenant." },
+    ],
+    relatedThemeIds: ["prophets", "kingship", "faithfulness"],
+    relatedPersonIds: ["moses", "david", "elijah"],
+    weekRefs: [1],
+  },
+  {
+    id: "prophets",
+    name: "Prophets",
+    summary: "Covenant messengers who call God's people back to faithfulness, not merely predictors of the future.",
+    explanation: [
+      "The prophetic office exists because Israel has a covenant it can violate. Moses gives the covenant; kings and people repeatedly violate it; prophets are raised up to call Israel back — this three-part pattern (lawgiver, lawbreaker, covenant messenger) is the basic grammar of the entire historical narrative from Judges through Kings.",
+      "Prediction is part of the prophetic task (as with Ahijah, Micaiah, and Elijah himself), but it is always in service of covenant enforcement, not an end in itself. This is also why 'the Prophets' as a body of literature could be paired with 'the Law' as together summarizing the whole Old Testament witness (Matthew 5:17; Luke 24:27).",
+    ],
+    passages: [
+      { ref: "Deuteronomy 18:15-22", note: "The prophetic office instituted." },
+      { ref: "Matthew 5:17", note: "Jesus on the Law and the Prophets." },
+      { ref: "1 Kings 13", note: "The young prophet: obedience to God's word over apparent spiritual authority." },
+      { ref: "1 Kings 19:15-16", note: "Elijah's threefold commission." },
+    ],
+    relatedThemeIds: ["covenant", "judgment"],
+    relatedPersonIds: ["moses", "elijah", "elisha", "micaiah", "john-the-baptist"],
+    weekRefs: [1, 3],
+  },
+  {
+    id: "repentance",
+    name: "Repentance",
+    summary: "Genuine, though sometimes partial or temporary, turning back to God in response to prophetic confrontation.",
+    explanation: [
+      "Ahab's response to Elijah's rebuke over Naboth's vineyard — tearing his clothes, fasting, and walking humbly — is treated by the text as real, even though it does not undo the underlying pattern of his reign; God even delays judgment because of it (1 Kings 21:27-29). This models a nuanced, non-cynical way of reading partial repentance without either dismissing it or treating it as a full resolution.",
+      "By contrast, the northern kings as a whole never repent of 'the sin of Jeroboam,' and the ultimate exile of both kingdoms is presented as the consequence of persistent, unrepented covenant infidelity.",
+    ],
+    passages: [
+      { ref: "1 Kings 21:27-29", note: "Ahab's partial repentance." },
+      { ref: "2 Chronicles 33:10-13", note: "Manasseh's later repentance in exile." },
+      { ref: "Luke 3:7-14", note: "John the Baptist's call to repentance with concrete fruit." },
+    ],
+    relatedThemeIds: ["judgment", "grace"],
+    relatedPersonIds: ["ahab"],
+    weekRefs: [4],
+  },
+  {
+    id: "judgment",
+    name: "Judgment",
+    summary: "God's righteous response to covenant unfaithfulness, often delayed but never ultimately avoided.",
+    explanation: [
+      "Judgment in Kings is rarely instantaneous. Jeroboam's dynasty ends a generation later; Ahab's is delayed because of his repentance and falls instead on his sons; the fall of Samaria (722 BC) and Jerusalem (586 BC) come only after centuries of persistent prophetic warning. Yet the text is emphatic that judgment, however delayed, is not avoided.",
+      "The Hiel/Jericho episode (1 Kings 16:34) works as a compact illustration of this larger pattern in miniature: a curse spoken by Joshua centuries earlier is fulfilled to the letter in Ahab's own days, in a story with no other narrative function than to demonstrate that God's word does not expire.",
+    ],
+    passages: [
+      { ref: "Joshua 6:26", note: "Curse on rebuilding Jericho." },
+      { ref: "1 Kings 16:34", note: "Fulfilled centuries later under Ahab." },
+      { ref: "1 Kings 21:20-29", note: "Judgment on the house of Ahab, partly delayed." },
+      { ref: "2 Kings 17:7-23", note: "The theological verdict on the fall of Israel." },
+    ],
+    relatedThemeIds: ["covenant", "repentance"],
+    relatedPersonIds: ["jeroboam", "ahab", "jezebel"],
+    weekRefs: [1, 4],
+  },
+  {
+    id: "grace",
+    name: "Grace",
+    summary: "God's unearned kindness and provision, extended even to the undeserving and to outsiders.",
+    explanation: [
+      "Grace threads through the Elijah narrative in surprising places: a Sidonian widow — a foreigner, from Baal's own home territory — is chosen as the recipient of miraculous provision and resurrection (1 Kings 17:8-24), which Jesus later cites as evidence that God's grace was never confined to ethnic Israel (Luke 4:25-26). At Horeb, Elijah's despair is met not with rebuke but with sleep, food, and a gentle recommissioning.",
+      "The 7,000 who have not bowed to Baal (1 Kings 19:18) — unknown even to Elijah himself — show that God's preserving grace often operates more broadly and quietly than His prophets can see.",
+    ],
+    passages: [
+      { ref: "1 Kings 17:8-24", note: "The widow of Zarephath." },
+      { ref: "1 Kings 19:5-8", note: "The angel's provision for despairing Elijah." },
+      { ref: "1 Kings 19:18", note: "The 7,000 who have not bowed to Baal." },
+      { ref: "Luke 4:25-26", note: "Jesus cites Zarephath as evidence of grace to outsiders." },
+      { ref: "Romans 11:2-5", note: "Paul cites the 7,000 as a pattern of a remnant chosen by grace." },
+    ],
+    relatedThemeIds: ["faithfulness"],
+    relatedPersonIds: ["elijah", "jesus"],
+    weekRefs: [2, 3],
+  },
+  {
+    id: "faithfulness",
+    name: "Faithfulness",
+    summary: "Steadfast loyalty to God's covenant, whether shown by an entire remnant or a single individual.",
+    explanation: [
+      "Elijah believes he alone remains faithful (1 Kings 19:10, 14), but God corrects this: 7,000 have not bowed the knee to Baal. Faithfulness in Kings is rarely a majority report — it is often hidden, quiet, and known only to God, which is itself a comfort to anyone who feels isolated in their own faithfulness.",
+      "Elisha's faithfulness in leaving everything to follow Elijah (1 Kings 19:19-21) and the widow of Zarephath's faithfulness in giving her last food to the prophet (1 Kings 17:13-15) both model costly trust rewarded by God's provision.",
+    ],
+    passages: [
+      { ref: "1 Kings 19:9-18", note: "Elijah's despair corrected; the 7,000." },
+      { ref: "1 Kings 19:19-21", note: "Elisha's costly response to the call." },
+      { ref: "Romans 11:1-6", note: "Paul applies the 'remnant' pattern to his own day." },
+    ],
+    relatedThemeIds: ["covenant", "grace"],
+    relatedPersonIds: ["elijah", "elisha"],
+    weekRefs: [3],
+  },
+  {
+    id: "temple",
+    name: "Temple",
+    summary: "The Jerusalem Temple as the LORD's chosen dwelling place and the theological counterweight to Bethel and Dan.",
+    explanation: [
+      "Solomon's Temple in Jerusalem centralizes Israel's worship as the Law required (Deuteronomy 12:5-14); Jeroboam's golden calves at Bethel and Dan are a direct, deliberate substitute designed to keep pilgrims from returning to Jerusalem and, with it, to the house of David.",
+      "The Temple's destruction in 586 BC is the culmination of centuries of covenant unfaithfulness across both kingdoms, and the New Testament ultimately presents Jesus himself, and believers united to him, as the true and final temple where God dwells with His people (John 2:19-21; 1 Corinthians 3:16).",
+    ],
+    passages: [
+      { ref: "Deuteronomy 12:5-14", note: "The command to centralize worship at the place the LORD chooses." },
+      { ref: "1 Kings 8", note: "Solomon dedicates the Temple." },
+      { ref: "1 Kings 12:26-27", note: "Jeroboam's political reasoning for the calves." },
+      { ref: "John 2:19-21", note: "Jesus identifies his body as the true temple." },
+    ],
+    relatedThemeIds: ["idolatry", "kingship"],
+    relatedPersonIds: ["solomon", "jeroboam"],
+    weekRefs: [1],
+  },
+  {
+    id: "kingship",
+    name: "Kingship",
+    summary: "Human kingship in Israel, evaluated against the Davidic standard and ultimately fulfilled in Christ.",
+    explanation: [
+      "Every king of Judah is measured by the narrator against 'the standard of his father David'; the kings of Israel, cut off from the Davidic line entirely, are instead measured against 'the sin of Jeroboam.' Kingship in the Old Testament is never simply about political power — it is a stewardship under God's own kingship, which is why prophets can confront kings directly and expect to be heeded.",
+      "The New Testament identifies Jesus as the long-awaited Davidic king whose kingdom, unlike every human dynasty in Kings, will never end (Luke 1:32-33).",
+    ],
+    passages: [
+      { ref: "Deuteronomy 17:14-20", note: "The law of the king, limiting royal power." },
+      { ref: "2 Samuel 7:12-16", note: "The promise of an eternal Davidic throne." },
+      { ref: "Luke 1:32-33", note: "Jesus as heir to David's throne forever." },
+    ],
+    relatedThemeIds: ["covenant", "temple"],
+    relatedPersonIds: ["david", "solomon", "jesus"],
+    weekRefs: [1],
+  },
+];
+
+export function getThemeById(id: string): Theme | undefined {
+  return themes.find((t) => t.id === id);
+}

@@ -1,26 +1,191 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.7);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Ancient Israel palette: parchment / stone / gold */
+  --color-parchment-50: #fdfbf5;
+  --color-parchment-100: #faf5e9;
+  --color-parchment-200: #f4ecd8;
+  --color-parchment-300: #ecdfc0;
+  --color-parchment-400: #e0cda0;
+  --color-parchment-500: #d0b57e;
+  --color-parchment-600: #b8975e;
+
+  --color-stone-50: #f5f3ef;
+  --color-stone-100: #e8e3d9;
+  --color-stone-200: #d3cabb;
+  --color-stone-300: #b2a58e;
+  --color-stone-400: #8c7f68;
+  --color-stone-500: #6b5d42;
+  --color-stone-600: #4d4230;
+  --color-stone-700: #3a3326;
+  --color-stone-800: #251f16;
+  --color-stone-900: #171410;
+
+  --color-gold-100: #f6e9c7;
+  --color-gold-200: #ecd696;
+  --color-gold-300: #ddb85e;
+  --color-gold-400: #c9a23e;
+  --color-gold-500: #b8923f;
+  --color-gold-600: #9c7628;
+  --color-gold-700: #7d5d1f;
+
+  --color-clay-500: #a3382c;
+  --color-clay-600: #8a2e24;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #f6f0e2;
+  --foreground: #2c2417;
+  --card: #faf5e9;
+  --card-foreground: #2c2417;
+  --popover: #faf5e9;
+  --popover-foreground: #2c2417;
+  --primary: #9c7628;
+  --primary-foreground: #fbf6ea;
+  --secondary: #e4d6b2;
+  --secondary-foreground: #3a2f1c;
+  --muted: #ecdfc4;
+  --muted-foreground: #6b5d42;
+  --accent: #c9a23e;
+  --accent-foreground: #2c2417;
+  --destructive: #a3382c;
+  --border: #dccca0;
+  --input: #dccca0;
+  --ring: #b8923f;
+  --chart-1: #b8923f;
+  --chart-2: #8a4a35;
+  --chart-3: #3f5c53;
+  --chart-4: #6b7d4f;
+  --chart-5: #6b5d42;
+  --chart-israel: #a8792a;
+  --chart-judah: #0f8a6f;
+  --radius: 0.5rem;
+  --sidebar: #f4ecd8;
+  --sidebar-foreground: #2c2417;
+  --sidebar-primary: #9c7628;
+  --sidebar-primary-foreground: #fbf6ea;
+  --sidebar-accent: #ecdfc4;
+  --sidebar-accent-foreground: #2c2417;
+  --sidebar-border: #dccca0;
+  --sidebar-ring: #b8923f;
+}
+
+.dark {
+  --background: #14120d;
+  --foreground: #ece3cf;
+  --card: #1e1a13;
+  --card-foreground: #ece3cf;
+  --popover: #1e1a13;
+  --popover-foreground: #ece3cf;
+  --primary: #d4af37;
+  --primary-foreground: #1a1712;
+  --secondary: #2e2818;
+  --secondary-foreground: #ece3cf;
+  --muted: #26221a;
+  --muted-foreground: #b3a582;
+  --accent: #d4af37;
+  --accent-foreground: #1a1712;
+  --destructive: #c0493a;
+  --border: #37301f;
+  --input: #37301f;
+  --ring: #d4af37;
+  --chart-1: #d4af37;
+  --chart-2: #b06a4e;
+  --chart-3: #5d8377;
+  --chart-4: #8fa06a;
+  --chart-5: #b3a582;
+  --chart-israel: #b58a34;
+  --chart-judah: #1f9e80;
+  --sidebar: #1a1712;
+  --sidebar-foreground: #ece3cf;
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #1a1712;
+  --sidebar-accent: #26221a;
+  --sidebar-accent-foreground: #ece3cf;
+  --sidebar-border: #37301f;
+  --sidebar-ring: #d4af37;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Subtle parchment / stone texture overlays */
+  .texture-parchment {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(184, 151, 94, 0.08), transparent 45%),
+      radial-gradient(circle at 80% 60%, rgba(107, 93, 66, 0.06), transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  .texture-stone {
+    background-image:
+      radial-gradient(circle at 15% 30%, rgba(212, 175, 55, 0.05), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(0,0,0,0.25), transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-gold-gradient {
+    background-image: linear-gradient(135deg, var(--color-gold-300), var(--color-gold-500));
+  }
 }
