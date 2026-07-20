@@ -12,6 +12,7 @@ export const locations: Location[] = [
     name: "Jerusalem",
     coordinates: { x: 52, y: 62 },
     region: "Southern Kingdom",
+    featureType: "temple",
     description:
       "Capital of the united kingdom under David and Solomon, and of Judah after the division. Site of Solomon's Temple.",
     importance:
@@ -26,6 +27,7 @@ export const locations: Location[] = [
     name: "Samaria",
     coordinates: { x: 47, y: 46 },
     region: "Northern Kingdom",
+    featureType: "capital",
     description:
       "Capital of the Northern Kingdom, built by Omri on a hill he purchased, and expanded by Ahab, who added a temple to Baal there.",
     importance:
@@ -40,6 +42,7 @@ export const locations: Location[] = [
     name: "Bethel",
     coordinates: { x: 51, y: 55 },
     region: "Northern Kingdom",
+    featureType: "shrine",
     description:
       "Southern border sanctuary of the Northern Kingdom, site of one of Jeroboam I's two golden calves and later condemned by prophets including the unnamed man of God in 1 Kings 13.",
     importance:
@@ -54,6 +57,7 @@ export const locations: Location[] = [
     name: "Dan",
     coordinates: { x: 55, y: 12 },
     region: "Northern Kingdom",
+    featureType: "shrine",
     description: "Northernmost sanctuary city of Israel, site of Jeroboam I's second golden calf.",
     importance:
       "Placed at the kingdom's far northern edge to Bethel's southern edge, the two calves bracketed the entire Northern Kingdom, offering worship \"close to home\" as a substitute for the Jerusalem pilgrimage.",
@@ -67,6 +71,7 @@ export const locations: Location[] = [
     name: "Jericho",
     coordinates: { x: 54, y: 63 },
     region: "Northern Kingdom",
+    featureType: "town",
     description:
       "The first Canaanite city conquered by Joshua; famously destroyed after the walls fell, then placed under a curse against rebuilding.",
     importance:
@@ -81,6 +86,7 @@ export const locations: Location[] = [
     name: "Jordan River",
     coordinates: { x: 56, y: 45 },
     region: "Transjordan",
+    featureType: "river",
     description:
       "The river Israel crossed on dry ground to enter the land under Joshua, and which Elijah and later Elisha strike with Elijah's rolled-up cloak to cross on dry ground.",
     importance:
@@ -96,6 +102,8 @@ export const locations: Location[] = [
     alternateNames: ["Wadi Cherith"],
     coordinates: { x: 58, y: 58 },
     region: "Transjordan",
+    featureType: "river",
+    uncertainLocation: true,
     description:
       "A wadi east of the Jordan where Elijah hides after announcing the drought, fed by ravens twice daily.",
     importance:
@@ -110,6 +118,7 @@ export const locations: Location[] = [
     name: "Zarephath",
     coordinates: { x: 33, y: 25 },
     region: "Phoenicia",
+    featureType: "town",
     description:
       "A Sidonian (Phoenician) town on the coast, home of the widow whose flour and oil miraculously do not run out, and whose son Elijah raises from death.",
     importance:
@@ -124,6 +133,7 @@ export const locations: Location[] = [
     name: "Mount Carmel",
     coordinates: { x: 38, y: 33 },
     region: "Northern Kingdom",
+    featureType: "mountain",
     description:
       "A prominent coastal mountain range where Elijah confronts 450 prophets of Baal and 400 of Asherah in the contest to determine whose god is truly God.",
     importance:
@@ -138,6 +148,7 @@ export const locations: Location[] = [
     name: "Kishon Valley/Brook",
     coordinates: { x: 40, y: 34 },
     region: "Northern Kingdom",
+    featureType: "valley",
     description: "The valley below Mount Carmel where the prophets of Baal are executed after the contest.",
     importance:
       "The same valley figures earlier in Judges 4-5 as the site of Israel's deliverance from Sisera — another place where the LORD's power over the storm-and-fertility domain Baal claimed for himself is demonstrated.",
@@ -151,6 +162,7 @@ export const locations: Location[] = [
     name: "Jezreel",
     coordinates: { x: 43, y: 39 },
     region: "Northern Kingdom",
+    featureType: "valley",
     description:
       "A royal residence of Ahab's dynasty in the fertile valley of the same name; site of Naboth's vineyard, and later of Jehu's massacre of the house of Ahab.",
     importance:
@@ -165,6 +177,7 @@ export const locations: Location[] = [
     name: "Beersheba",
     coordinates: { x: 46, y: 84 },
     region: "Southern Kingdom",
+    featureType: "town",
     description: "Southernmost town of Judah, where Elijah leaves his servant before continuing alone into the wilderness.",
     importance:
       "Marks the edge of \"civilized\" Israelite territory — from here Elijah goes fully alone into the wilderness, a picture of total despair and withdrawal.",
@@ -179,6 +192,8 @@ export const locations: Location[] = [
     alternateNames: ["Mount Sinai"],
     coordinates: { x: 38, y: 100 },
     region: "Transjordan",
+    featureType: "mountain",
+    uncertainLocation: true,
     description:
       "\"The mountain of God,\" traditionally identified with Sinai, where Elijah travels forty days and nights and encounters the LORD in the still small voice.",
     importance:
@@ -193,6 +208,7 @@ export const locations: Location[] = [
     name: "Damascus",
     coordinates: { x: 66, y: 5 },
     region: "Aram",
+    featureType: "capital",
     description: "Capital of the Aramean kingdom; Elijah is instructed to travel there to anoint Hazael as king.",
     importance:
       "Represents the commission's outward reach beyond Israel's borders — the LORD raising up a foreign king as an instrument of judgment on His own covenant people.",
@@ -206,6 +222,7 @@ export const locations: Location[] = [
     name: "Abel-meholah",
     coordinates: { x: 51, y: 43 },
     region: "Northern Kingdom",
+    featureType: "town",
     description: "Home town of Elisha, where Elijah finds him plowing with twelve yoke of oxen and casts his cloak on him.",
     importance:
       "The call scene — Elisha slaughtering his oxen and burning the plow equipment to feed the people — signals a complete, irreversible break with his old life.",
@@ -219,6 +236,7 @@ export const locations: Location[] = [
     name: "Ramoth-Gilead",
     coordinates: { x: 60, y: 45 },
     region: "Transjordan",
+    featureType: "fortress",
     description:
       "A contested border fortress-city in the Transjordan, object of repeated wars between Israel and Aram; site of Ahab's death and, later, of Jehu's anointing as king.",
     importance:
@@ -233,6 +251,7 @@ export const locations: Location[] = [
     name: "Tyre",
     coordinates: { x: 34, y: 8 },
     region: "Phoenicia",
+    featureType: "capital",
     description: "Major Phoenician port city; likely the political and commercial capital that Jezebel's father Ethbaal ruled.",
     importance:
       "Represents the Baal-worshiping Phoenician culture Jezebel imported into Israel when she married Ahab.",
@@ -246,6 +265,7 @@ export const locations: Location[] = [
     name: "Sidon",
     coordinates: { x: 32, y: 15 },
     region: "Phoenicia",
+    featureType: "town",
     description: "Phoenician coastal city named as Jezebel's and the Zarephath widow's homeland region.",
     importance:
       "Ironic setting: it is in Baal's own territory that the LORD demonstrates His provision and power over life and death through the widow of Zarephath.",
@@ -259,6 +279,7 @@ export const locations: Location[] = [
     name: "Shechem",
     coordinates: { x: 49, y: 51 },
     region: "Northern Kingdom",
+    featureType: "capital",
     description: "City where Rehoboam went to be made king and where the kingdom split occurred; Jeroboam I's first capital.",
     importance: "A city already loaded with covenant significance from Joshua 24, making the split there especially poignant.",
     scriptureRefs: ["1 Kings 12:1", "1 Kings 12:25"],
@@ -271,6 +292,7 @@ export const locations: Location[] = [
     name: "Ai",
     coordinates: { x: 51, y: 57 },
     region: "Northern Kingdom",
+    featureType: "town",
     description: "Second city conquered by Joshua after Jericho, following Israel's initial defeat there because of Achan's sin.",
     importance: "Shows that the conquest was not automatic — covenant faithfulness mattered even in Israel's earliest days in the land.",
     scriptureRefs: ["Joshua 7-8"],

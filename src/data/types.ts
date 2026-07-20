@@ -31,12 +31,26 @@ export interface MapCoordinates {
   y: number;
 }
 
+export type FeatureType =
+  | "capital"
+  | "temple"
+  | "shrine"
+  | "mountain"
+  | "river"
+  | "valley"
+  | "fortress"
+  | "town";
+
 export interface Location {
   id: string;
   name: string;
   alternateNames?: string[];
   coordinates: MapCoordinates;
   region: "Northern Kingdom" | "Southern Kingdom" | "Phoenicia" | "Aram" | "Transjordan" | "Coastal Plain";
+  /** What kind of site this is, used to pick the marker's icon on the map. */
+  featureType: FeatureType;
+  /** True when the site's precise location is genuinely disputed/unknown (rendered as a hollow marker, atlas-style). */
+  uncertainLocation?: boolean;
   description: string;
   importance: string;
   scriptureRefs: string[];
