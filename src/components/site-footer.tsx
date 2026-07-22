@@ -17,6 +17,7 @@ const columns = [
       { href: "/kings", label: "Kings" },
       { href: "/maps", label: "Maps" },
       { href: "/people", label: "People" },
+      { href: "/deities", label: "Deities" },
       { href: "/family-trees", label: "Family Trees" },
     ],
   },

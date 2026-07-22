@@ -1,5 +1,6 @@
 import { canaaniteDeities, getDeityById } from "@/data/deities";
 import { CertaintyBadge } from "@/components/certainty-badge";
+import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 
 export function DeityCard({ id, className }: { id: string; className?: string }) {
@@ -7,10 +8,12 @@ export function DeityCard({ id, className }: { id: string; className?: string })
   if (!deity) return null;
   return (
     <div className={cn("flex flex-col overflow-hidden rounded-xl border border-border/70 bg-card text-left", className)}>
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-200 dark:bg-stone-800">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={deity.image.src} alt={deity.image.alt} className="h-full w-full object-cover" loading="lazy" />
-      </div>
+      <ZoomableImage
+        src={deity.image.src}
+        alt={deity.image.alt}
+        thumbnailClassName="relative aspect-[4/3] w-full bg-stone-200 dark:bg-stone-800"
+        className="h-full w-full object-cover"
+      />
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-start justify-between gap-2">
           <p className="font-heading text-lg font-semibold">

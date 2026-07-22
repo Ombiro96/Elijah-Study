@@ -66,10 +66,9 @@ export const slides: Slide[] = [
     },
     bullets: [
       "Two figures appear beside the transfigured Jesus.",
-      "Ask the room: why Moses?",
-      "The answer comes instantly, almost every time: \"The Law.\"",
+      "Moses and Elijah.",
     ],
-    notes: "Let someone answer out loud — it's almost always immediate. Don't rush past how easy this question is; it sets up how hard the next one feels.",
+    notes: "Ask the room out loud: why Moses? The answer comes instantly, almost every time — \"the Law.\" Let someone answer before moving on; don't rush past how easy this one is, because it sets up how hard the next question feels.",
     scriptureRefs: ["Matthew 17:1-3"],
   },
   {
@@ -79,11 +78,10 @@ export const slides: Slide[] = [
     title: "Why Elijah?",
     layout: "mystery",
     bullets: [
-      "Moses = the Law. Obvious to almost everyone.",
-      "Elijah = ?",
-      "Do not answer yet.",
+      "Moses represents the Law.",
+      "Elijah represents...?",
     ],
-    notes: "Sit in the silence here. This is the central question the entire week exists to answer — don't resolve it now. The payoff is Scene 13.",
+    notes: "Sit in the silence here — do not let anyone answer yet. This is the central question the entire week exists to answer; don't resolve it now. The payoff is Scene 13.",
     scriptureRefs: ["Matthew 17:1-13"],
   },
   {

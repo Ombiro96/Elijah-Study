@@ -104,7 +104,7 @@ export function ZoomableImage({
           setOpen(true);
         }}
         className={cn("group relative block w-full cursor-zoom-in overflow-hidden rounded-xl", thumbnailClassName)}
-        aria-label={`Expand map: ${alt}`}
+        aria-label={`Expand image: ${alt}`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className={cn("h-auto w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]", className)} loading="lazy" />
