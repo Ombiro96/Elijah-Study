@@ -32,6 +32,22 @@ export const historicalMaps: HistoricalMap[] = [
     },
   },
   {
+    id: "canaanite-nations",
+    title: "The Nations of Canaan",
+    era: "Before & at the time of the Exodus, c. 1740 engraving",
+    description:
+      "An older sibling to the Bartholomew map above, naming the specific peoples Israel encountered on every side — Canaanites, Moabites, Ammonites, Midianites, Edomites, and Amalekites — as they stood before and during the Exodus generation. Deuteronomy 7:1 lists seven of these nations by name as the ones Israel was warned against.",
+    image: {
+      src: "https://upload.wikimedia.org/wikipedia/commons/1/14/S.W.%2C_A_Map_of_the_Divisions_%26_Situations_of_the_Tribes_of_Canaanites%2C_Moabites%2C_Ammonites%2C_Midianites%2C_Edomites%2C_Amalekites_%26_C_%28FL199992192_2369214%29.jpg",
+      alt: "1740 engraved map titled 'A Map of the Divisions & Situations of the Tribes of Canaanites, Moabites, Ammonites, Midianites, Edomites, Amalekites &c., before & at the time of the Exodus of the Children of Israel'",
+      caption:
+        "“A Map of the Divisions & Situations of the Tribes of Canaanites, Moabites, Ammonites, Midianites, Edomites, Amalekites &c.” (S.W., London, c. 1740)",
+      attribution: "Eran Laor Cartographic Collection, National Library of Israel — Public Domain",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:S.W.,_A_Map_of_the_Divisions_%26_Situations_of_the_Tribes_of_Canaanites,_Moabites,_Ammonites,_Midianites,_Edomites,_Amalekites_%26_C_(FL199992192_2369214).jpg",
+    },
+  },
+  {
     id: "conquest",
     title: "The Twelve Tribes of Israel",
     era: "Depicting the allotment following Joshua's conquest, c. 1400 BC",
