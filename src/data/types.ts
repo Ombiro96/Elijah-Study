@@ -13,6 +13,19 @@ export type Certainty =
   | "speculative"; // a plausible but unproven inference, always flagged as such
 
 export type Kingdom = "United Kingdom" | "Israel" | "Judah" | "N/A";
+
+/**
+ * A real, properly-licensed photograph or scan (Wikimedia Commons, museum
+ * collections, public-domain archives) — never an AI-generated image.
+ * `attribution` and `sourceUrl` must always be shown alongside the image.
+ */
+export interface SourcedImage {
+  src: string;
+  alt: string;
+  caption: string;
+  attribution: string;
+  sourceUrl: string;
+}
 export type Evaluation = "good" | "evil" | "mixed";
 export type Testament = "OT" | "NT";
 

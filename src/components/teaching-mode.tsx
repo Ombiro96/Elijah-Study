@@ -14,6 +14,9 @@ import {
 import { slides } from "@/data/slides";
 import { Button } from "@/components/ui/button";
 import { ScriptureTagList } from "@/components/scripture-tag";
+import { HistoricalMapFigure } from "@/components/historical-map";
+import { DeityGrid } from "@/components/deity-card";
+import { CompareBlockView } from "@/components/compare-block";
 import { cn } from "@/lib/utils";
 
 const weekLabel: Record<number, string> = {
@@ -81,10 +84,30 @@ export function TeachingMode() {
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-gold-600 dark:text-gold-400">
                 {s.kicker}
               </p>
-              <h2 className="mt-1 font-heading text-2xl font-semibold">{s.title}</h2>
-              <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
-                {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
-              </ul>
+              {!(s.layout === "cliffhanger" && s.quote) && (
+                <h2 className="mt-1 font-heading text-2xl font-semibold">
+                  {s.layout === "flashback" ? s.flashbackLabel ?? s.title : s.title}
+                </h2>
+              )}
+              {s.quote && (
+                <blockquote className="mt-3 border-l-4 border-gold-500/50 pl-4 font-heading text-lg italic text-foreground">
+                  &ldquo;{s.quote.text}&rdquo;
+                  <footer className="mt-1 text-sm font-sans not-italic text-muted-foreground">— {s.quote.ref}</footer>
+                </blockquote>
+              )}
+              {s.layout === "map" && s.mapId && <HistoricalMapFigure mapId={s.mapId} className="mt-4" />}
+              {s.layout === "deities" && s.deityIds && <DeityGrid ids={s.deityIds} className="mt-4" />}
+              {s.layout === "compare" && s.compare && <CompareBlockView compare={s.compare} className="mt-4" />}
+              {s.bullets.length > 0 && (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
+                  {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
+              )}
+              {s.layout === "cliffhanger" && s.nextLabel && (
+                <p className="mt-3 inline-flex rounded-full border border-gold-500/40 bg-gold-100/30 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-gold-700 dark:bg-gold-700/10 dark:text-gold-400">
+                  {s.nextLabel}
+                </p>
+              )}
               {s.notes && <p className="mt-3 rounded-lg bg-muted/50 p-3 text-sm italic text-muted-foreground">{s.notes}</p>}
               {s.scriptureRefs && <div className="mt-3"><ScriptureTagList refs={s.scriptureRefs} /></div>}
             </div>
@@ -94,12 +117,16 @@ export function TeachingMode() {
     );
   }
 
+  const isCliffhanger = slide.layout === "cliffhanger";
+  const isFlashback = slide.layout === "flashback";
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative flex min-h-[70vh] flex-col bg-background",
-        isFullscreen && "min-h-screen justify-center"
+        "relative flex min-h-[70vh] flex-col bg-background transition-colors",
+        isFullscreen && "min-h-screen justify-center",
+        isCliffhanger && "bg-stone-950 text-stone-50"
       )}
     >
       {/* Progress bar */}
@@ -111,21 +138,63 @@ export function TeachingMode() {
       </div>
 
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center sm:px-16">
-        <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-gold-600 dark:text-gold-400">
-          {slide.kicker}
-        </p>
-        <h1 className="mt-4 max-w-3xl text-balance font-heading text-4xl font-semibold tracking-tight sm:text-6xl">
-          {slide.title}
-        </h1>
-        <ul className="mt-8 space-y-3 text-left text-lg text-muted-foreground sm:text-xl">
-          {slide.bullets.map((b, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-gold-500" />
-              {b}
-            </li>
-          ))}
-        </ul>
-        {slide.scriptureRefs && (
+        {!isFlashback && (
+          <p
+            className={cn(
+              "font-mono text-sm font-semibold uppercase tracking-[0.2em]",
+              isCliffhanger ? "text-gold-400/80" : slide.tone === "dark" ? "text-clay-500" : "text-gold-600 dark:text-gold-400"
+            )}
+          >
+            {slide.kicker}
+          </p>
+        )}
+
+        {isFlashback ? (
+          <h1 className="mt-6 max-w-3xl text-balance font-heading text-5xl font-bold italic tracking-tight text-stone-500 sm:text-7xl dark:text-stone-400">
+            {slide.flashbackLabel ?? slide.title}
+          </h1>
+        ) : !(isCliffhanger && slide.quote) ? (
+          <h1 className="mt-4 max-w-3xl text-balance font-heading text-4xl font-semibold tracking-tight sm:text-6xl">
+            {slide.title}
+          </h1>
+        ) : null}
+
+        {slide.quote && (
+          <blockquote
+            className={cn(
+              "mt-6 max-w-2xl text-left font-heading italic",
+              isCliffhanger ? "text-balance text-center text-3xl sm:text-5xl" : "border-l-4 border-gold-500/50 pl-4 text-lg sm:text-xl"
+            )}
+          >
+            &ldquo;{slide.quote.text}&rdquo;
+            <footer className={cn("mt-2 font-sans text-sm not-italic", isCliffhanger ? "text-center text-stone-400" : "text-muted-foreground")}>
+              — {slide.quote.ref}
+            </footer>
+          </blockquote>
+        )}
+
+        {slide.layout === "map" && slide.mapId && <HistoricalMapFigure mapId={slide.mapId} className="mt-6" />}
+        {slide.layout === "deities" && slide.deityIds && <DeityGrid ids={slide.deityIds} className="mt-6 w-full max-w-4xl" />}
+        {slide.layout === "compare" && slide.compare && <CompareBlockView compare={slide.compare} className="mt-6" />}
+
+        {slide.bullets.length > 0 && (
+          <ul className="mt-8 space-y-3 text-left text-lg text-muted-foreground sm:text-xl">
+            {slide.bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-gold-500" />
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {isCliffhanger && slide.nextLabel && (
+          <div className="mt-12 rounded-full border border-gold-500/40 bg-gold-500/10 px-5 py-2 font-mono text-sm uppercase tracking-[0.2em] text-gold-400">
+            {slide.nextLabel}
+          </div>
+        )}
+
+        {slide.scriptureRefs && !isCliffhanger && (
           <div className="mt-6">
             <ScriptureTagList refs={slide.scriptureRefs} />
           </div>
