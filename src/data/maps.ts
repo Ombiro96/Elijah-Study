@@ -18,17 +18,17 @@ export interface HistoricalMap {
 export const historicalMaps: HistoricalMap[] = [
   {
     id: "conquest",
-    title: "Canaan During Joshua's Conquest",
-    era: "Depicting events traditionally dated c. 1400 BC",
+    title: "The Twelve Tribes of Israel",
+    era: "Depicting the allotment following Joshua's conquest, c. 1400 BC",
     description:
-      "An 18th-century engraved map compiled directly from the Book of Joshua, marking the Canaanite city-states Israel encountered on entering the land — Jericho, Ai, Jerusalem, Bethel, and Hazor among them. It reflects the cartographic understanding of its own time, not modern archaeology, but is a faithful visual guide to the conquest narrative's geography.",
+      "Map of the territories allotted to the twelve tribes of Israel according to the Book of Joshua, chapters 13–19, before Dan moved northward. Some tribes had trouble conquering their allotted territories; the map does not show successful conquests.",
     image: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/8/84/A_map_of_the_Land_of_Promise.compiled_out_of_the_book_of_Joshua_%28FL37121979_3898256%29.jpg",
-      alt: "1730 engraved map of Canaan titled 'A Map of the Land of Promise, compiled out of the Book of Joshua'",
-      caption: "“A Map of the Land of Promise, compiled out of the Book of Joshua” (London, c. 1730)",
-      attribution: "Eran Laor Cartographic Collection, National Library of Israel — Public Domain",
-      sourceUrl:
-        "https://commons.wikimedia.org/wiki/File:A_map_of_the_Land_of_Promise.compiled_out_of_the_book_of_Joshua_(FL37121979_3898256).jpg",
+      src: "https://upload.wikimedia.org/wikipedia/commons/c/c2/12_Tribes_of_Israel_Map.svg",
+      alt: "Map of the twelve tribal territories of Israel as allotted in the Book of Joshua",
+      caption: "The Twelve Tribes of Israel — territorial allotment per Joshua 13–19",
+      attribution:
+        "Richardprins (derivative of Kordas, יוסי, and Janz), Wikimedia Commons — CC BY-SA 3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:12_Tribes_of_Israel_Map.svg",
     },
   },
   {
