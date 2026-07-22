@@ -17,6 +17,21 @@ export interface HistoricalMap {
 
 export const historicalMaps: HistoricalMap[] = [
   {
+    id: "pre-conquest-canaan",
+    title: "Canaan Before the Conquest",
+    era: "c. 1500–1250 BC — the land as the Canaanite nations held it",
+    description:
+      "Canaan before Israel entered it: a patchwork of Canaanite city-states and peoples — Hittites, Amorites, Perizzites, Girgashites, Hivites, and Jebusites among them — with no tribal divisions yet drawn. This is the land Joshua's spies scouted and the twelve tribes would later be allotted.",
+    image: {
+      src: "https://upload.wikimedia.org/wikipedia/commons/0/05/John_Bartholomew_%26_Co.%2C_Palestine_Before_the_coming_of_Israel_1500_-_1250_B.C_%28FL36567138_3907206%29.jpg",
+      alt: "1915 map titled 'Palestine Before the coming of Israel, 1500-1250 B.C.'",
+      caption: "“Palestine Before the coming of Israel, 1500–1250 B.C.” (London, 1915)",
+      attribution: "Eran Laor Cartographic Collection, National Library of Israel — Public Domain",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:John_Bartholomew_%26_Co.,_Palestine_Before_the_coming_of_Israel_1500_-_1250_B.C_(FL36567138_3907206).jpg",
+    },
+  },
+  {
     id: "conquest",
     title: "The Twelve Tribes of Israel",
     era: "Depicting the allotment following Joshua's conquest, c. 1400 BC",
