@@ -1,4 +1,4 @@
-import { Landmark, Flame, Triangle, Circle } from "lucide-react";
+import { Landmark, Flame, Triangle, Circle, Star } from "lucide-react";
 import type { Location } from "@/data/types";
 
 export const regionColorVar: Record<Location["region"], string> = {
@@ -51,6 +51,7 @@ export function MapLegend() {
         <ul className="space-y-1.5 text-sm">
           <li className="flex items-center gap-2"><Circle className="size-3.5 shrink-0 fill-current text-muted-foreground" /> City (location well attested)</li>
           <li className="flex items-center gap-2"><Circle className="size-3.5 shrink-0 text-muted-foreground" /> City (precise site disputed)</li>
+          <li className="flex items-center gap-2"><Star className="size-3.5 shrink-0 fill-current text-gold-600 dark:text-gold-400" /> Capital city</li>
           <li className="flex items-center gap-2"><Triangle className="size-3.5 shrink-0 fill-current text-muted-foreground" /> Mountain peak</li>
           <li className="flex items-center gap-2"><Landmark className="size-3.5 shrink-0 text-muted-foreground" /> Temple</li>
           <li className="flex items-center gap-2"><Flame className="size-3.5 shrink-0 text-muted-foreground" /> Rival shrine / altar</li>

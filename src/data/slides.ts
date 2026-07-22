@@ -3,7 +3,6 @@ export type SlideLayout =
   | "mystery" // a question posed on-screen, deliberately left unanswered
   | "flashback" // a large "N Years Earlier..." transition card
   | "map" // a real, sourced historical map (see src/data/maps.ts)
-  | "deities" // a grid of Canaanite-deity cards (see src/data/deities.ts)
   | "compare" // two scripture passages set side by side
   | "cliffhanger"; // fades to black, then teases the next week
 
@@ -34,8 +33,6 @@ export interface Slide {
   flashbackLabel?: string;
   /** References src/data/maps.ts for "map" slides. */
   mapId?: string;
-  /** References src/data/deities.ts for "deities" slides. */
-  deityIds?: string[];
   compare?: CompareBlock;
   /** What to tease at the end of a "cliffhanger" slide, e.g. "Week 2 — The Prophet Appears". */
   nextLabel?: string;
@@ -161,13 +158,12 @@ export const slides: Slide[] = [
     week: 1,
     kicker: "Week 1 · Scene 6 — The Gods of Canaan",
     title: "Who Israel Was Warned About",
-    layout: "deities",
-    deityIds: ["baal", "asherah", "ashtoreth", "molech"],
     bullets: [
       "Every nation in Canaan worshiped its own gods, tied to weather, fertility, and the land itself.",
+      "Baal (storm and harvest), Asherah (fertility), Ashtoreth (Sidon's goddess), Molech (the Ammonites' god).",
       "These were not exotic curiosities — they were the default religion of the ground Israel was about to farm.",
     ],
-    notes: "This is the most important background section of the week — nearly everything from Judges through Ahab is a variation on Israel giving in to exactly these gods.",
+    notes: "This is the most important background section of the week — nearly everything from Judges through Ahab is a variation on Israel giving in to exactly these gods. Pull up /deities on the reference site if the group wants the images, cult sites, and sourcing for each one — it's deliberately left off this slide so it doesn't get crowded.",
   },
   {
     id: "w1-warnings",

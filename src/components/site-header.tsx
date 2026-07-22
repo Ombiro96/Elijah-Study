@@ -26,6 +26,7 @@ const referenceLinks = [
   { href: "/kings", label: "Kings", description: "Filterable table of every king." },
   { href: "/maps", label: "Maps", description: "Interactive map of every location." },
   { href: "/people", label: "People", description: "Character pages and relationships." },
+  { href: "/deities", label: "Deities", description: "Gods and idols Israel was warned about." },
   { href: "/family-trees", label: "Family Trees", description: "Dynasties and prophetic succession." },
   { href: "/charts", label: "Charts", description: "Kings, prophets, battles, miracles." },
 ];

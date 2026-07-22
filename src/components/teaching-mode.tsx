@@ -15,7 +15,6 @@ import { slides } from "@/data/slides";
 import { Button } from "@/components/ui/button";
 import { ScriptureTagList } from "@/components/scripture-tag";
 import { HistoricalMapFigure } from "@/components/historical-map";
-import { DeityGrid } from "@/components/deity-card";
 import { CompareBlockView } from "@/components/compare-block";
 import { cn } from "@/lib/utils";
 
@@ -96,7 +95,6 @@ export function TeachingMode() {
                 </blockquote>
               )}
               {s.layout === "map" && s.mapId && <HistoricalMapFigure mapId={s.mapId} className="mt-4" />}
-              {s.layout === "deities" && s.deityIds && <DeityGrid ids={s.deityIds} className="mt-4" />}
               {s.layout === "compare" && s.compare && <CompareBlockView compare={s.compare} className="mt-4" />}
               {s.bullets.length > 0 && (
                 <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
@@ -174,7 +172,6 @@ export function TeachingMode() {
         )}
 
         {slide.layout === "map" && slide.mapId && <HistoricalMapFigure mapId={slide.mapId} className="mt-6" />}
-        {slide.layout === "deities" && slide.deityIds && <DeityGrid ids={slide.deityIds} className="mt-6 w-full max-w-4xl" />}
         {slide.layout === "compare" && slide.compare && <CompareBlockView compare={slide.compare} className="mt-6" />}
 
         {slide.bullets.length > 0 && (

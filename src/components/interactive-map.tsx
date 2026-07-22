@@ -10,32 +10,15 @@ import { ScriptureTagList } from "@/components/scripture-tag";
 import { MapLegend, regionColorVar, regionLabel } from "@/components/map-legend";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { X, Landmark, Flame, Triangle } from "lucide-react";
+import { X, Landmark, Flame, Triangle, Star, ZoomIn, ZoomOut, Maximize, Minimize } from "lucide-react";
 
-const regionSlug: Record<Location["region"], string> = {
-  "Northern Kingdom": "northern",
-  "Southern Kingdom": "southern",
-  Phoenicia: "phoenicia",
-  Aram: "aram",
-  Transjordan: "transjordan",
-  "Coastal Plain": "coastal",
-};
-
-/** Soft political-territory washes over each region's heartland cluster — approximate, not precise borders. */
+/** Flat political-territory fills over each region's heartland cluster — approximate, not precise borders. */
 const regionBlobs: { region: Location["region"]; cx: number; cy: number; rx: number; ry: number }[] = [
   { region: "Northern Kingdom", cx: 45, cy: 38, rx: 18, ry: 21 },
   { region: "Southern Kingdom", cx: 50, cy: 72, rx: 13, ry: 18 },
   { region: "Phoenicia", cx: 33, cy: 16, rx: 9, ry: 14 },
   { region: "Aram", cx: 64, cy: 8, rx: 9, ry: 8 },
   { region: "Transjordan", cx: 59, cy: 50, rx: 10, ry: 15 },
-];
-
-/** Soft brown highland washes suggesting relief, hillshade-style, without real elevation data. */
-const highlandBlobs = [
-  { cx: 38, cy: 30, rx: 9, ry: 10 }, // Galilee / Carmel range
-  { cx: 48, cy: 50, rx: 10, ry: 18 }, // Samaria-Bethel central ridge
-  { cx: 49, cy: 72, rx: 8, ry: 14 }, // Judean hill country
-  { cx: 62, cy: 42, rx: 8, ry: 12 }, // Gilead / Transjordan plateau
 ];
 
 const regionTextLabels: { region: Location["region"]; x: number; y: number; small?: boolean }[] = [
@@ -46,28 +29,48 @@ const regionTextLabels: { region: Location["region"]; x: number; y: number; smal
   { region: "Transjordan", x: 64, y: 56, small: true },
 ];
 
-type MarkerKind = "mountain" | "temple" | "shrine" | "city";
+type MarkerKind = "mountain" | "temple" | "shrine" | "capital" | "city";
 
 function markerKind(featureType: FeatureType): MarkerKind {
   if (featureType === "mountain") return "mountain";
   if (featureType === "temple") return "temple";
   if (featureType === "shrine") return "shrine";
+  if (featureType === "capital") return "capital";
   return "city";
 }
 
 function isBig(featureType: FeatureType) {
-  return featureType === "capital" || featureType === "fortress";
+  return featureType === "fortress";
 }
+
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 3;
 
 export function InteractiveMap() {
   const searchParams = useSearchParams();
   const initial = searchParams.get("location");
   const [journey, setJourney] = React.useState<JourneyId | "all">("all");
   const [selectedId, setSelectedId] = React.useState<string | null>(initial);
+  const [zoom, setZoom] = React.useState(MIN_ZOOM);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const fullscreenRef = React.useRef<HTMLDivElement>(null);
 
   const activeJourney = journey !== "all" ? getJourneyById(journey) : null;
   const activeLocationIds = new Set(activeJourney?.steps.map((s) => s.locationId));
   const selected = locations.find((l) => l.id === selectedId) ?? null;
+
+  React.useEffect(() => {
+    function onChange() {
+      setIsFullscreen(!!document.fullscreenElement);
+    }
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) fullscreenRef.current?.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
 
   const pathPoints =
     activeJourney?.steps
@@ -77,72 +80,66 @@ export function InteractiveMap() {
       .filter((l): l is Location => !!l) ?? [];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div ref={fullscreenRef} className={cn("grid gap-6 lg:grid-cols-3", isFullscreen && "bg-background p-4")}>
       <div className="lg:col-span-2">
-        <div className="mb-4 flex flex-wrap gap-2">
-          <Button
-            size="sm"
-            variant={journey === "all" ? "default" : "outline"}
-            onClick={() => setJourney("all")}
-            className={journey === "all" ? "bg-gold-gradient text-stone-900" : ""}
-          >
-            All Locations
-          </Button>
-          {journeys.map((j) => (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
-              key={j.id}
               size="sm"
-              variant={journey === j.id ? "default" : "outline"}
-              onClick={() => setJourney(j.id)}
-              className={journey === j.id ? "bg-gold-gradient text-stone-900" : ""}
+              variant={journey === "all" ? "default" : "outline"}
+              onClick={() => setJourney("all")}
+              className={journey === "all" ? "bg-gold-gradient text-stone-900" : ""}
             >
-              {j.title}
+              All Locations
             </Button>
-          ))}
+            {journeys.map((j) => (
+              <Button
+                key={j.id}
+                size="sm"
+                variant={journey === j.id ? "default" : "outline"}
+                onClick={() => setJourney(j.id)}
+                className={journey === j.id ? "bg-gold-gradient text-stone-900" : ""}
+              >
+                {j.title}
+              </Button>
+            ))}
+          </div>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" onClick={() => setZoom((z) => Math.max(MIN_ZOOM, +(z - 0.5).toFixed(2)))} disabled={zoom <= MIN_ZOOM} aria-label="Zoom out">
+              <ZoomOut className="size-4" />
+            </Button>
+            <span className="w-10 text-center font-mono text-xs text-muted-foreground">{Math.round(zoom * 100)}%</span>
+            <Button variant="ghost" size="icon" onClick={() => setZoom((z) => Math.min(MAX_ZOOM, +(z + 0.5).toFixed(2)))} disabled={zoom >= MAX_ZOOM} aria-label="Zoom in">
+              <ZoomIn className="size-4" />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={toggleFullscreen} aria-label="Toggle fullscreen">
+              {isFullscreen ? <Minimize className="size-4" /> : <Maximize className="size-4" />}
+            </Button>
+          </div>
         </div>
         {activeJourney && (
           <p className="mb-3 text-sm text-muted-foreground">{activeJourney.description}</p>
         )}
 
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border-2 border-[var(--map-ink)]/30 shadow-inner sm:aspect-[5/4]" style={{ backgroundColor: "var(--map-land)" }}>
+        <div className={cn("relative overflow-auto rounded-xl border-2 border-[var(--map-ink)]/30 shadow-inner", zoom > MIN_ZOOM && "cursor-grab active:cursor-grabbing", isFullscreen ? "max-h-[calc(100vh-10rem)]" : "max-h-[80vh]")}>
+          <div
+            className="relative aspect-[4/5] w-full sm:aspect-[5/4]"
+            style={{ backgroundColor: "var(--map-land)", zoom }}
+          >
           <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="seaGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="var(--region-sea)" stopOpacity="0.95" />
-                <stop offset="100%" stopColor="var(--region-sea)" stopOpacity="0.55" />
-              </linearGradient>
-              {highlandBlobs.map((b, i) => (
-                <radialGradient key={i} id={`highland-${i}`} cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="var(--map-highland)" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="var(--map-highland)" stopOpacity="0" />
-                </radialGradient>
-              ))}
-              {regionBlobs.map((b) => (
-                <radialGradient key={b.region} id={`glow-${regionSlug[b.region]}`} cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor={regionColorVar[b.region]} stopOpacity="0.5" />
-                  <stop offset="65%" stopColor={regionColorVar[b.region]} stopOpacity="0.24" />
-                  <stop offset="100%" stopColor={regionColorVar[b.region]} stopOpacity="0" />
-                </radialGradient>
-              ))}
-            </defs>
-
-            {/* Highland relief washes */}
-            {highlandBlobs.map((b, i) => (
-              <ellipse key={i} cx={b.cx} cy={b.cy} rx={b.rx} ry={b.ry} fill={`url(#highland-${i})`} />
-            ))}
-
             {/* The Great Sea (Mediterranean) */}
             <path
               d="M0,0 L0,100 L24,100 C26,90 22,80 25,70 C28,61 30,53 27,45 C24,39 25,36 29,33 C33,30 35,27 31,21 C28,16 26,11 30,6 C28,2 24,1 21,0 Z"
-              fill="url(#seaGradient)"
+              fill="var(--region-sea)"
+              opacity="0.7"
             />
 
             {/* Dead Sea */}
-            <ellipse cx="53" cy="78" rx="3.4" ry="6.5" fill="var(--region-sea)" opacity="0.7" />
+            <ellipse cx="53" cy="78" rx="3.4" ry="6.5" fill="var(--region-sea)" opacity="0.85" />
 
-            {/* Region political washes + soft outline */}
+            {/* Region political fills — flat, atlas-plate style, with a clean ink-toned border */}
             {regionBlobs.map((b) => (
-              <ellipse key={b.region} cx={b.cx} cy={b.cy} rx={b.rx} ry={b.ry} fill={`url(#glow-${regionSlug[b.region]})`} />
+              <ellipse key={b.region} cx={b.cx} cy={b.cy} rx={b.rx} ry={b.ry} fill={regionColorVar[b.region]} opacity="0.55" />
             ))}
             {regionBlobs.map((b) => (
               <ellipse
@@ -153,9 +150,8 @@ export function InteractiveMap() {
                 ry={b.ry}
                 fill="none"
                 stroke={regionColorVar[b.region]}
-                strokeWidth="0.35"
-                strokeDasharray="1.4,1.2"
-                opacity="0.55"
+                strokeWidth="0.5"
+                opacity="0.9"
               />
             ))}
 
@@ -252,7 +248,12 @@ export function InteractiveMap() {
             {activeJourney ? activeJourney.title : "The World of Elijah"}
           </div>
 
-          {/* Compass rose */}
+          {/* Scale bar + compass rose */}
+          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 text-[var(--map-ink)] opacity-70">
+            <span className="text-[9px] font-semibold">0</span>
+            <span className="h-[3px] w-8 bg-current" />
+            <span className="text-[9px] font-semibold">~40 km</span>
+          </div>
           <div className="absolute bottom-3 right-3 flex flex-col items-center text-[var(--map-ink)] opacity-70">
             <span className="text-[10px] font-bold leading-none">N</span>
             <span className="text-xs leading-none">↑</span>
@@ -281,9 +282,17 @@ export function InteractiveMap() {
                   {kind === "mountain" && (
                     <Triangle
                       className={cn("size-4 transition-transform group-hover:scale-125", isSelected && "scale-150")}
-                      style={{ color }}
+                      style={{ color: "var(--map-ink)" }}
                       fill={hollow ? "none" : color}
                       strokeWidth={2}
+                    />
+                  )}
+                  {kind === "capital" && (
+                    <Star
+                      className={cn("size-5 drop-shadow-sm transition-transform group-hover:scale-125", isSelected && "scale-150")}
+                      style={{ color: "var(--map-ink)" }}
+                      fill={hollow ? "none" : "var(--color-gold-400)"}
+                      strokeWidth={1.5}
                     />
                   )}
                   {(kind === "temple" || kind === "shrine") && (
@@ -294,7 +303,7 @@ export function InteractiveMap() {
                       )}
                       style={{
                         backgroundColor: hollow ? "transparent" : color,
-                        borderColor: color,
+                        borderColor: "var(--map-ink)",
                       }}
                     >
                       {kind === "temple" ? (
@@ -313,7 +322,7 @@ export function InteractiveMap() {
                       )}
                       style={{
                         backgroundColor: hollow ? "var(--map-land)" : color,
-                        borderColor: color,
+                        borderColor: "var(--map-ink)",
                       }}
                     />
                   )}
@@ -332,6 +341,7 @@ export function InteractiveMap() {
               </div>
             );
           })}
+          </div>
         </div>
 
         <div className="mt-4">
@@ -340,7 +350,8 @@ export function InteractiveMap() {
         <p className="mt-2 text-xs text-muted-foreground">
           Styled as an illustrative historical atlas plate: marker positions and region outlines
           are approximate, not surveyed coordinates. Regional boundaries in particular were never
-          fixed straight lines in antiquity.
+          fixed straight lines in antiquity. Use the zoom controls or fullscreen button above to
+          see it larger.
         </p>
       </div>
 

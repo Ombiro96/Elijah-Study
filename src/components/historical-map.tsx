@@ -1,10 +1,11 @@
 import { getMapById } from "@/data/maps";
+import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 
 /**
  * Renders a real, sourced historical map (Wikimedia Commons / National
  * Library of Israel scans) with visible attribution — never AI-generated
- * map art.
+ * map art. Click the map to view it fullscreen and zoomed in.
  */
 export function HistoricalMapFigure({ mapId, className }: { mapId: string; className?: string }) {
   const map = getMapById(mapId);
@@ -12,8 +13,7 @@ export function HistoricalMapFigure({ mapId, className }: { mapId: string; class
   return (
     <figure className={cn("mx-auto w-full max-w-2xl", className)}>
       <div className="overflow-hidden rounded-xl border border-border/70 bg-stone-100 shadow-sm dark:bg-stone-900">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={map.image.src} alt={map.image.alt} className="h-auto w-full object-contain" loading="lazy" />
+        <ZoomableImage src={map.image.src} alt={map.image.alt} />
       </div>
       <figcaption className="mt-2 text-center text-sm text-muted-foreground">
         <span className="font-medium text-foreground">{map.image.caption}</span>
