@@ -28,7 +28,7 @@ const weekLabel: Record<number, string> = {
 
 export function TeachingMode() {
   const [index, setIndex] = React.useState(0);
-  const [showNotes, setShowNotes] = React.useState(true);
+  const [showNotes, setShowNotes] = React.useState(false);
   const [readingMode, setReadingMode] = React.useState(false);
   const [showPicker, setShowPicker] = React.useState(false);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
