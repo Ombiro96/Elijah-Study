@@ -15,8 +15,27 @@ import { slides } from "@/data/slides";
 import { Button } from "@/components/ui/button";
 import { ScriptureTagList } from "@/components/scripture-tag";
 import { HistoricalMapFigure } from "@/components/historical-map";
+import { ArtifactFigure } from "@/components/artifact-figure";
+import { AltarDiagram } from "@/components/altar-diagram";
 import { CompareBlockView } from "@/components/compare-block";
 import { cn } from "@/lib/utils";
+
+/** One or two sourced archaeological photos, side by side on wider screens. */
+function ArtifactGroup({ ids, className }: { ids: string[]; className?: string }) {
+  return (
+    <div
+      className={cn(
+        "grid w-full gap-5 text-left",
+        ids.length > 1 ? "max-w-4xl sm:grid-cols-2" : "max-w-2xl",
+        className
+      )}
+    >
+      {ids.map((id) => (
+        <ArtifactFigure key={id} artifactId={id} showDescription={ids.length === 1} />
+      ))}
+    </div>
+  );
+}
 
 const weekLabel: Record<number, string> = {
   0: "Introduction",
@@ -95,6 +114,8 @@ export function TeachingMode() {
                 </blockquote>
               )}
               {s.layout === "map" && s.mapId && <HistoricalMapFigure mapId={s.mapId} className="mt-4" />}
+              {s.layout === "artifacts" && s.artifactIds && <ArtifactGroup ids={s.artifactIds} className="mt-4" />}
+              {s.layout === "diagram" && s.diagramId === "carmel-altars" && <AltarDiagram className="mt-4" />}
               {s.layout === "compare" && s.compare && <CompareBlockView compare={s.compare} className="mt-4" />}
               {s.bullets.length > 0 && (
                 <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
@@ -172,6 +193,10 @@ export function TeachingMode() {
         )}
 
         {slide.layout === "map" && slide.mapId && <HistoricalMapFigure mapId={slide.mapId} className="mt-6" />}
+        {slide.layout === "artifacts" && slide.artifactIds && <ArtifactGroup ids={slide.artifactIds} className="mt-6" />}
+        {slide.layout === "diagram" && slide.diagramId === "carmel-altars" && (
+          <AltarDiagram className="mt-6 max-w-5xl" />
+        )}
         {slide.layout === "compare" && slide.compare && <CompareBlockView compare={slide.compare} className="mt-6" />}
 
         {slide.bullets.length > 0 && (

@@ -98,22 +98,46 @@ export const theologyTopics: TheologyTopic[] = [
   {
     slug: "james-5",
     title: "James 5 and the Power of Prayer",
-    summary: "James grounds Elijah's extraordinary ministry in ordinary human prayer, as an encouragement to every believer.",
+    summary: "James grounds Elijah's extraordinary ministry in ordinary human prayer — and supplies the New Testament application for everything 1 Kings 18 demonstrates about God.",
     sections: [
       {
         heading: "\"A man with a nature like ours\"",
         body: [
           "James 5:17-18 cites Elijah's prayer for drought and then for rain as an example for believers: 'Elijah was a man with a nature like ours, and he prayed fervently that it might not rain, and for three years and six months it did not rain on the earth. Then he prayed again, and heaven gave rain.'",
           "This is a deliberately humanizing move: Elijah's power did not come from some innate spiritual superiority but from earnest, believing prayer available to any believer. James uses this to encourage ordinary Christians toward bold, persistent prayer, especially in the context of the preceding verses about prayer for the sick and for one another's sin (James 5:13-16).",
+          "The word translated 'with a nature like ours' is homoiopathes, which appears only twice in the New Testament. Its other occurrence is Acts 14:15, where Paul and Barnabas use it to stop the crowd at Lystra from worshipping them: 'we also are men, of like nature with you.' In both places the word does the same job — it deflates the veneration of a human being. By the time James writes, Elijah has become a near-legendary figure, and James picks precisely the word that refuses the legend.",
+        ],
+      },
+      {
+        heading: "Prayer that James supplies, and 1 Kings only implies",
+        body: [
+          "1 Kings 17:1 does not actually say Elijah prayed for the drought; it records him announcing it — 'there shall be neither dew nor rain these years, except by my word.' James tells us what was happening behind that announcement: it was prayer. This is a useful example of the New Testament giving inspired interpretation of an Old Testament narrative, filling in an interior reality the original account reports only from the outside.",
+          "James's 'three years and six months' (matching Jesus in Luke 4:25) sits alongside 1 Kings 18:1's 'in the third year.' The usual reconstruction is that the two figures count from different starting points — the three and a half years from the last rainfall, and 'the third year' from Elijah's arrival at Zarephath or the beginning of his concealment. This is a harmonization rather than something either text states, and is best presented as such.",
+        ],
+      },
+      {
+        heading: "Why the sevenfold prayer matters theologically",
+        body: [
+          "Before Carmel, God had already told Elijah how the drought would end: 'Go, show yourself to Ahab, and I will send rain upon the earth' (1 Kings 18:1). The outcome was promised before the contest began. Yet after the fire falls, Elijah does not simply wait for the weather. He climbs to the top of Carmel, bows to the ground with his face between his knees, and sends his servant to look toward the sea seven times before a cloud the size of a man's hand appears (1 Kings 18:42-44).",
+          "This is the clearest illustration in the Elijah narrative that God's sovereign promise does not make prayer redundant — it is what makes prayer confident. Elijah prays hard for something God has already committed to do. The traditional formulation is that God ordains both the ends and the means, and here the means is a prophet on his face praying seven times for a promise he already had in hand.",
+          "Held together with Romans 11, the two New Testament reflections on Elijah function as bookends. Romans 11 looks back at Elijah to teach that God preserves a remnant by grace — salvation belongs to God. James 5 looks back at Elijah to teach persistent prayer by an ordinary believer — God delights to work through the prayers of His people. The two do not compete; each keeps the other from becoming a distortion.",
         ],
       },
     ],
-    scriptureRefs: ["James 5:13-18", "1 Kings 17:1", "1 Kings 18:41-45"],
+    scriptureRefs: [
+      "James 5:13-18",
+      "James 5:17-18",
+      "Acts 14:15",
+      "1 Kings 17:1",
+      "1 Kings 18:1",
+      "1 Kings 18:41-46",
+      "Luke 4:25",
+    ],
   },
   {
     slug: "romans-11",
     title: "Romans 11 and the Remnant",
-    summary: "Paul cites the 7,000 who had not bowed to Baal as a pattern for understanding God's ongoing faithfulness to a believing remnant.",
+    summary: "Paul cites the 7,000 who had not bowed to Baal as a pattern for understanding God's ongoing faithfulness to a believing remnant — and reads the whole episode as God's doing, not the remnant's.",
     sections: [
       {
         heading: "Paul's argument",
@@ -122,8 +146,28 @@ export const theologyTopics: TheologyTopic[] = [
           "Paul's larger argument in the chapter concerns Israel's partial hardening and the ingrafting of Gentile believers, culminating in hope for Israel's future restoration (Romans 11:25-32). The Elijah citation is a supporting illustration within that broader argument, not its entirety.",
         ],
       },
+      {
+        heading: "Who kept the 7,000?",
+        body: [
+          "The detail Paul presses is the direction of the verb. He writes, 'I have kept for myself seven thousand men who have not bowed the knee to Baal' (Romans 11:4). Not 'seven thousand kept themselves faithful' — God is the one acting, and the phrase 'for myself' makes the purpose His as well. The Hebrew of 1 Kings 19:18 already runs the same way ('I will leave seven thousand in Israel'), so this is not Paul importing a foreign idea into the Elijah narrative; it is Paul reading out what is already there.",
+          "That is why the conclusion in the very next verse is stated the way it is: 'So too at the present time there is a remnant, chosen by grace.' Paul then closes the door on any other reading — 'But if it is by grace, it is no longer on the basis of works; otherwise grace would no longer be grace' (Romans 11:6). The existence of a faithful remnant is presented as an act of divine preservation, not as a human achievement God happens to notice.",
+        ],
+      },
+      {
+        heading: "Why this belongs with 1 Kings 18, not only 1 Kings 19",
+        body: [
+          "Paul quotes from 1 Kings 19, but the logic he draws out is already voiced by Elijah one chapter earlier. On Carmel, Elijah prays that Israel would know 'that you, O LORD, are God, and that you have turned their hearts back' (1 Kings 18:37) — making God the agent of Israel's turning before any fire falls. Romans 11 is therefore not a New Testament idea projected backward onto Elijah; it is Paul agreeing with Elijah's own theology of how hearts change.",
+          "Reading the two chapters together also resolves an honest tension. All Israel confesses 'The LORD, he is God' at Carmel (1 Kings 18:39), yet within a chapter Jezebel is still in power, Elijah is a fugitive, and he insists the nation has forsaken the covenant (1 Kings 19:10). If the Carmel confession had been a national conversion, chapter 19 would be inexplicable. Paul's category of a remnant chosen by grace accounts for both facts at once: God genuinely turned hearts back, and the number He turned was known to Him and not to His prophet.",
+        ],
+      },
     ],
-    scriptureRefs: ["Romans 11:1-6", "1 Kings 19:14-18", "Romans 11:25-32"],
+    scriptureRefs: [
+      "Romans 11:1-6",
+      "Romans 11:4",
+      "1 Kings 18:36-37",
+      "1 Kings 19:14-18",
+      "Romans 11:25-32",
+    ],
   },
   {
     slug: "davidic-covenant",
