@@ -274,7 +274,7 @@ export function TeachingMode() {
                     i === index && "bg-muted"
                   )}
                 >
-                  <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">{weekLabel[s.week]}</span>
+                  <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">{s.deck ?? weekLabel[s.week]}</span>
                   <span>{s.title}</span>
                 </button>
               ))}
