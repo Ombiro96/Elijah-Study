@@ -84,9 +84,10 @@ export default function Week2Page() {
 
       <WeekSection id="chapter-17" kicker="1 Kings 17" title="Chapter 17 in Brief">
         <p>
-          Chapter 17 deserves a study of its own, and it will get one. For now it functions as the
-          ramp into Carmel: three quiet, private demonstrations of who actually runs the world,
-          staged before any crowd is watching.
+          Chapter 17 deserves a study of its own, and it has one &mdash; a full slide set filed
+          under &ldquo;1 Kings 17&rdquo; in Teaching Mode. Here it functions as the ramp into
+          Carmel: three quiet, private demonstrations of who actually runs the world, staged before
+          any crowd is watching.
         </p>
         <div className="grid gap-3 sm:grid-cols-3">
           <Card>
