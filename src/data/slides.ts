@@ -45,7 +45,7 @@ export interface Slide {
   /** Which hand-drawn schematic to render for "diagram" slides. */
   diagramId?: "carmel-altars";
   compare?: CompareBlock;
-  /** What to tease at the end of a "cliffhanger" slide, e.g. "Week 2 — The Prophet Appears". */
+  /** What to tease at the end of a "cliffhanger" slide, e.g. "Week 2 & 3 — The Prophet Appears". */
   nextLabel?: string;
   /** Visual weight hook for scenes that should read as heavier/darker. */
   tone?: "dark";
@@ -336,12 +336,12 @@ export const slides: Slide[] = [
     title: "Now Elijah the Tishbite...",
     layout: "cliffhanger",
     quote: { text: "Now Elijah the Tishbite...", ref: "1 Kings 17:1" },
-    nextLabel: "Week 2 — The Prophet Appears",
+    nextLabel: "Week 2 & 3 — The Prophet Appears",
     bullets: [],
     notes: "Read only the opening words. Do not explain. Do not continue. Let it go quiet, then fade to black.",
     scriptureRefs: ["1 Kings 17:1"],
   },
-  // 1 Kings 17 — taught as its own session inside Week 2
+  // 1 Kings 17 — taught as its own session inside Week 2 & 3
   {
     id: "w2c17-no-introduction",
     week: 2,
@@ -437,7 +437,7 @@ export const slides: Slide[] = [
       "And be fed by the poorest person in town: a widow with no husband and no harvest.",
       "He goes.",
     ],
-    notes: "Sit with the cost of this before moving on. Ask the room what they would have felt receiving this assignment — hide from Ahab, and hide in his wife's home country, in the region whose god you just humiliated, dependent on a destitute stranger. Nothing about it looks safer than the dry brook; the answer to a hard place is a harder one. Two observations to add. First, Baal's own territory is under the same drought — the storm god cannot feed a widow in his own heartland. Second, note the tense: God says 'I have commanded a widow there' before Elijah sets out. She is prepared before he arrives. This is Week 2's whole theme showing up early — God acts first.",
+    notes: "Sit with the cost of this before moving on. Ask the room what they would have felt receiving this assignment — hide from Ahab, and hide in his wife's home country, in the region whose god you just humiliated, dependent on a destitute stranger. Nothing about it looks safer than the dry brook; the answer to a hard place is a harder one. Two observations to add. First, Baal's own territory is under the same drought — the storm god cannot feed a widow in his own heartland. Second, note the tense: God says 'I have commanded a widow there' before Elijah sets out. She is prepared before he arrives. This is this session's whole theme showing up early — God acts first.",
     scriptureRefs: ["1 Kings 17:8-10", "1 Kings 16:31"],
   },
   {
@@ -650,11 +650,11 @@ export const slides: Slide[] = [
     notes: "Three years of hiding end with one sentence, and the rain is promised before anything on Carmel happens. Read it, then stop — the next session opens by noticing that this promise comes twenty verses before the fire. Everything chapter 17 proved in private, with an audience of one widow, chapter 18 puts in front of a nation.",
     scriptureRefs: ["1 Kings 18:1"],
   },
-  // Week 2
+  // Week 2 & 3
   {
     id: "w2-the-question",
     week: 2,
-    kicker: "Week 2 · Scene 1 — The Question",
+    kicker: "Week 2 & 3 · Scene 1 — The Question",
     title: "How Long Will You Limp?",
     layout: "mystery",
     quote: {
@@ -668,23 +668,9 @@ export const slides: Slide[] = [
     scriptureRefs: ["1 Kings 18:21"],
   },
   {
-    id: "w2-chapter-17",
-    week: 2,
-    kicker: "Week 2 · Scene 2 — The Ramp",
-    title: "Chapter 17 in Brief",
-    bullets: [
-      "RAIN — a drought announced by the word of the LORD, on Baal's own claimed turf (17:1).",
-      "FOOD — ravens at Cherith; a Sidonian widow's flour and oil that do not run out (17:2-16).",
-      "LIFE — the widow's son dies and is raised; the first resurrection in Scripture (17:17-24).",
-      "Three private demonstrations, before any crowd is watching.",
-    ],
-    notes: "Deliberately compressed — chapter 17 has its own full set of slides in this deck, filed under \"1 Kings 17\" in the slide picker. Two things to land: (1) these are the first three rungs of a ladder that ends in verse 18:37, and (2) all of it happens in Zarephath, a Sidonian town in Jezebel's home region. Jesus points at exactly that detail in Luke 4:25-26. Even the warm-up is about God choosing, not people qualifying.",
-    scriptureRefs: ["1 Kings 17:1", "1 Kings 17:8-16", "1 Kings 17:17-24", "Luke 4:25-26"],
-  },
-  {
     id: "w2-carmel-terms",
     week: 2,
-    kicker: "Week 2 · Scene 3 — Mount Carmel",
+    kicker: "Week 2 & 3 · Scene 2 — Mount Carmel",
     title: "The Terms of the Test",
     bullets: [
       "Three years of drought. Ahab, 450 prophets of Baal, 400 prophets of Asherah, summoned to one mountain.",
@@ -698,7 +684,7 @@ export const slides: Slide[] = [
   {
     id: "w2-baal-silence",
     week: 2,
-    kicker: "Week 2 · Scene 4 — Baal's Prophets",
+    kicker: "Week 2 & 3 · Scene 3 — Baal's Prophets",
     title: "Six Hours of Maximum Effort",
     tone: "dark",
     bullets: [
@@ -713,7 +699,7 @@ export const slides: Slide[] = [
   {
     id: "w2-altar",
     week: 2,
-    kicker: "Week 2 · Scene 5 — The Altar",
+    kicker: "Week 2 & 3 · Scene 4 — The Altar",
     title: "Twelve Stones, and Then He Stops",
     bullets: [
       "Elijah repairs a broken-down altar of the LORD using twelve stones — one per tribe of Jacob.",
@@ -727,7 +713,7 @@ export const slides: Slide[] = [
   {
     id: "w2-two-altars",
     week: 2,
-    kicker: "Week 2 · Scene 5b — What the Text Says",
+    kicker: "Week 2 & 3 · Scene 4b — What the Text Says",
     title: "The Two Altars",
     layout: "diagram",
     diagramId: "carmel-altars",
@@ -738,7 +724,7 @@ export const slides: Slide[] = [
   {
     id: "w2-real-altars",
     week: 2,
-    kicker: "Week 2 · Scene 5c — Picturing It",
+    kicker: "Week 2 & 3 · Scene 4c — Picturing It",
     title: "What Altars Actually Looked Like",
     layout: "artifacts",
     artifactIds: ["canaanite-altar-megiddo", "israelite-altar-beersheba"],
@@ -752,7 +738,7 @@ export const slides: Slide[] = [
   {
     id: "w2-the-prayer",
     week: 2,
-    kicker: "Week 2 · Scene 6 — The Prayer",
+    kicker: "Week 2 & 3 · Scene 5 — The Prayer",
     title: "Answer Me, O LORD",
     layout: "mystery",
     quote: {
@@ -766,7 +752,7 @@ export const slides: Slide[] = [
   {
     id: "w2-not-pray",
     week: 2,
-    kicker: "Week 2 · Scene 7 — The Hinge",
+    kicker: "Week 2 & 3 · Scene 6 — The Hinge",
     title: "What Elijah Does Not Pray",
     layout: "compare",
     compare: {
@@ -790,7 +776,7 @@ export const slides: Slide[] = [
   {
     id: "w2-fire-then-worship",
     week: 2,
-    kicker: "Week 2 · Scene 8 — The Order",
+    kicker: "Week 2 & 3 · Scene 7 — The Order",
     title: "Fire, Then Worship",
     bullets: [
       "The fire falls and consumes the offering, the wood, the stones, the dust — and licks up the water in the trench.",
@@ -804,7 +790,7 @@ export const slides: Slide[] = [
   {
     id: "w2-promise-already",
     week: 2,
-    kicker: "Week 2 · Scene 9 — Before Any of It",
+    kicker: "Week 2 & 3 · Scene 8 — Before Any of It",
     title: "The Rain Was Already Promised",
     layout: "mystery",
     quote: {
@@ -822,7 +808,7 @@ export const slides: Slide[] = [
   {
     id: "w2-seven-times",
     week: 2,
-    kicker: "Week 2 · Scene 10 — The Sevenfold Prayer",
+    kicker: "Week 2 & 3 · Scene 9 — The Sevenfold Prayer",
     title: "Seven Times",
     bullets: [
       "He does not stroll down the mountain and wait for weather.",
@@ -837,7 +823,7 @@ export const slides: Slide[] = [
   {
     id: "w2-james-5",
     week: 2,
-    kicker: "Week 2 · Scene 11 — James 5",
+    kicker: "Week 2 & 3 · Scene 10 — James 5",
     title: "A Man With a Nature Like Ours",
     quote: {
       text: "Elijah was a man with a nature like ours, and he prayed fervently that it might not rain... Then he prayed again, and heaven gave rain.",
@@ -855,7 +841,7 @@ export const slides: Slide[] = [
   {
     id: "w2-the-running",
     week: 2,
-    kicker: "Week 2 · Scene 12 — The Run to Jezreel",
+    kicker: "Week 2 & 3 · Scene 11 — The Run to Jezreel",
     title: "The Hand of the LORD",
     quote: {
       text: "And the hand of the LORD was on Elijah, and he gathered up his garment and ran before Ahab to the entrance of Jezreel.",
@@ -872,7 +858,7 @@ export const slides: Slide[] = [
   {
     id: "w2-carmel-terrain",
     week: 2,
-    kicker: "Week 2 · Scene 12b — The Ground Itself",
+    kicker: "Week 2 & 3 · Scene 11b — The Ground Itself",
     title: "Carmel, Looking Toward Jezreel",
     layout: "artifacts",
     artifactIds: ["carmel-view-1915"],
@@ -886,7 +872,7 @@ export const slides: Slide[] = [
   {
     id: "w2-miracles-dont",
     week: 2,
-    kicker: "Week 2 · Scene 13 — The Week 1 Payoff",
+    kicker: "Week 2 & 3 · Scene 12 — The Week 1 Payoff",
     title: "Miracles Alone Do Not Turn Hearts",
     bullets: [
       "Israel saw the Red Sea part — and made a golden calf before Moses came down (Exodus 14; 32).",
@@ -900,7 +886,7 @@ export const slides: Slide[] = [
   {
     id: "w2-romans-11-kept",
     week: 2,
-    kicker: "Week 2 · Scene 14 — Romans 11",
+    kicker: "Week 2 & 3 · Scene 13 — Romans 11",
     title: "Who Kept the 7,000?",
     layout: "compare",
     compare: {
@@ -918,13 +904,13 @@ export const slides: Slide[] = [
       "He quotes Elijah's complaint (\"I alone am left\") and then God's answer.",
       "\"For myself\" — the purpose is God's too, not just the action.",
     ],
-    notes: "Paul quotes 1 Kings 19, which is next week's chapter — that is intentional, and it is what makes the cliffhanger work. The point to press is the direction of the verb. Ask the room to say the sentence back with the wrong subject and hear how different a religion it produces.",
+    notes: "Paul quotes 1 Kings 19, which this session reaches later tonight — that is intentional, and it is what makes the cliffhanger work. The point to press is the direction of the verb. Ask the room to say the sentence back with the wrong subject and hear how different a religion it produces.",
     scriptureRefs: ["Romans 11:1-6", "Romans 11:4", "1 Kings 19:14-18"],
   },
   {
     id: "w2-remnant-grace",
     week: 2,
-    kicker: "Week 2 · Scene 15 — Romans 11:5-6",
+    kicker: "Week 2 & 3 · Scene 14 — Romans 11:5-6",
     title: "A Remnant, Chosen by Grace",
     quote: {
       text: "So too at the present time there is a remnant, chosen by grace. But if it is by grace, it is no longer on the basis of works; otherwise grace would no longer be grace.",
@@ -942,7 +928,7 @@ export const slides: Slide[] = [
   {
     id: "w2-bookends",
     week: 2,
-    kicker: "Week 2 · Scene 16 — Two Bookends",
+    kicker: "Week 2 & 3 · Scene 15 — Two Bookends",
     title: "Romans 11 and James 5",
     layout: "compare",
     compare: {
@@ -966,7 +952,7 @@ export const slides: Slide[] = [
   {
     id: "w2-crescendo",
     week: 2,
-    kicker: "Week 2 · Scene 17 — The Golden Thread",
+    kicker: "Week 2 & 3 · Scene 16 — The Golden Thread",
     title: "God Acts First",
     bullets: [
       "He sends the drought — and He sends the rain. (17:1; 18:41-45)",
@@ -983,7 +969,7 @@ export const slides: Slide[] = [
   {
     id: "w2-god-was-victorious",
     week: 2,
-    kicker: "Week 2 · Scene 18 — The Verdict",
+    kicker: "Week 2 & 3 · Scene 17 — The Verdict",
     title: "God Was Victorious",
     bullets: [
       "Not: \"Elijah was victorious.\"",
@@ -997,23 +983,22 @@ export const slides: Slide[] = [
   {
     id: "w2-cliffhanger",
     week: 2,
-    kicker: "Week 2 · Scene 19",
+    kicker: "Week 2 & 3 · Scene 18 — Then He Was Afraid",
     title: "Then He Was Afraid",
     layout: "cliffhanger",
     quote: {
       text: "Then he was afraid, and he arose and ran for his life.",
       ref: "1 Kings 19:3",
     },
-    nextLabel: "Week 3 — When Servants Break",
+    nextLabel: "When Servants Break",
     bullets: [],
-    notes: "Ask the question and then let it hang in the dark: if God has just turned a nation's heart back to Himself — why is Elijah running? Do not answer it. Next week's answer is that the God who turns a nation's heart is also the God who gently restores one weary prophet: sleep, food, a voice that is not in the wind or the earthquake or the fire, and news of seven thousand others he never knew about.",
+    notes: "Ask the question and then let it hang in the dark: if God has just turned a nation's heart back to Himself — why is Elijah running? Do not answer it. The next scene's answer is that the God who turns a nation's heart is also the God who gently restores one weary prophet: sleep, food, a voice that is not in the wind or the earthquake or the fire, and news of seven thousand others he never knew about.",
     scriptureRefs: ["1 Kings 19:1-3"],
   },
-  // Week 3
   {
     id: "w3-fear",
-    week: 3,
-    kicker: "Week 3 — When Servants Break",
+    week: 2,
+    kicker: "Week 2 & 3 · Scene 19 — Jezebel's Threat",
     title: "Jezebel's Threat",
     bullets: ["One message undoes a mountaintop victory", "Elijah runs for his life", "Scripture does not smooth over the contradiction"],
     notes: "",
@@ -1021,8 +1006,8 @@ export const slides: Slide[] = [
   },
   {
     id: "w3-broom-tree",
-    week: 3,
-    kicker: "Week 3 — When Servants Break",
+    week: 2,
+    kicker: "Week 2 & 3 · Scene 20 — The Broom Tree",
     title: "The Broom Tree",
     bullets: ["'It is enough; take my life'", "Real despair, not staged", "God's first response: sleep and food"],
     notes: "",
@@ -1030,8 +1015,8 @@ export const slides: Slide[] = [
   },
   {
     id: "w3-horeb",
-    week: 3,
-    kicker: "Week 3 — When Servants Break",
+    week: 2,
+    kicker: "Week 2 & 3 · Scene 21 — Horeb",
     title: "Forty Days to Horeb",
     bullets: ["Same mountain as Moses", "Wind, earthquake, fire — God is not in them", "A still small voice"],
     notes: "",
@@ -1039,8 +1024,8 @@ export const slides: Slide[] = [
   },
   {
     id: "w3-7000",
-    week: 3,
-    kicker: "Week 3 — When Servants Break",
+    week: 2,
+    kicker: "Week 2 & 3 · Scene 22 — The 7,000",
     title: "The 7,000",
     bullets: ["'I, even I only, am left'", "God: 7,000 have not bowed to Baal", "Romans 11 cites this as the pattern of a faithful remnant"],
     notes: "",
@@ -1048,8 +1033,8 @@ export const slides: Slide[] = [
   },
   {
     id: "w3-commission",
-    week: 3,
-    kicker: "Week 3 — When Servants Break",
+    week: 2,
+    kicker: "Week 2 & 3 · Scene 23 — The Commission",
     title: "The Threefold Commission",
     bullets: ["Elisha: anointed personally by Elijah", "Hazael & Jehu: named now, anointed later — through Elisha", "God's purposes outlast any one prophet"],
     notes: "",

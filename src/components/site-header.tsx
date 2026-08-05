@@ -15,8 +15,7 @@ import {
 
 const studyLinks = [
   { href: "/week/1", label: "Week 1", description: "Why Elijah? The world before he appears." },
-  { href: "/week/2", label: "Week 2", description: "Who is God? Carmel and the drought." },
-  { href: "/week/3", label: "Week 3", description: "When God's Servants Break — Horeb." },
+  { href: "/week/2", label: "Week 2 & 3", description: "Who is God? Carmel, the drought, and Horeb." },
   { href: "/week/4", label: "Week 4", description: "The Legacy of Elijah, to Christ." },
   { href: "/teach", label: "Teaching Mode", description: "Full-screen presentation mode." },
 ];

@@ -5,8 +5,7 @@ const columns = [
     title: "Study",
     links: [
       { href: "/week/1", label: "Week 1 — Why Elijah?" },
-      { href: "/week/2", label: "Week 2 — Who is God?" },
-      { href: "/week/3", label: "Week 3 — When Servants Break" },
+      { href: "/week/2", label: "Week 2 & 3 — Who is God?" },
       { href: "/week/4", label: "Week 4 — The Legacy of Elijah" },
     ],
   },

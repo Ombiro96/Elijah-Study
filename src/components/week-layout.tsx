@@ -16,7 +16,7 @@ export function WeekLayout({
   nextHref,
   children,
 }: {
-  week: number;
+  week: number | string;
   title: string;
   subtitle: string;
   toc: WeekTocEntry[];

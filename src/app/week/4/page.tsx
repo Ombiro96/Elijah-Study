@@ -27,7 +27,7 @@ export default function Week4Page() {
       title="The Legacy of Elijah"
       subtitle="1 Kings 21–22 and 2 Kings 1–2 close Elijah's earthly ministry with a stolen vineyard, a lone honest prophet, a king's death exactly as foretold, and a whirlwind — but his legacy runs forward all the way to the Transfiguration and the gospel itself."
       toc={toc}
-      prevHref="/week/3"
+      prevHref="/week/2"
     >
       <WeekSection id="naboth" kicker="1 Kings 21" title="Naboth's Vineyard">
         <p>
