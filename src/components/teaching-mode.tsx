@@ -18,6 +18,7 @@ import { HistoricalMapFigure } from "@/components/historical-map";
 import { ArtifactFigure } from "@/components/artifact-figure";
 import { AltarDiagram } from "@/components/altar-diagram";
 import { CompareBlockView } from "@/components/compare-block";
+import { ParallelLivesView } from "@/components/parallel-lives";
 import { cn } from "@/lib/utils";
 
 /** One or two sourced archaeological photos, side by side on wider screens. */
@@ -117,6 +118,7 @@ export function TeachingMode() {
               {s.layout === "artifacts" && s.artifactIds && <ArtifactGroup ids={s.artifactIds} className="mt-4" />}
               {s.layout === "diagram" && s.diagramId === "carmel-altars" && <AltarDiagram className="mt-4" />}
               {s.layout === "compare" && s.compare && <CompareBlockView compare={s.compare} className="mt-4" />}
+              {s.layout === "parallels" && s.parallels && <ParallelLivesView parallels={s.parallels} className="mt-4" />}
               {s.bullets.length > 0 && (
                 <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
                   {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
@@ -198,6 +200,9 @@ export function TeachingMode() {
           <AltarDiagram className="mt-6 max-w-5xl" />
         )}
         {slide.layout === "compare" && slide.compare && <CompareBlockView compare={slide.compare} className="mt-6" />}
+        {slide.layout === "parallels" && slide.parallels && (
+          <ParallelLivesView parallels={slide.parallels} className="mt-6" />
+        )}
 
         {slide.bullets.length > 0 && (
           <ul className="mt-8 space-y-3 text-left text-lg text-muted-foreground sm:text-xl">
