@@ -4,6 +4,8 @@ import { WeekLayout, WeekSection } from "@/components/week-layout";
 import { ScriptureTagList } from "@/components/scripture-tag";
 import { Card, CardContent } from "@/components/ui/card";
 import { TransfigurationCompare } from "@/components/transfiguration-compare";
+import { ParallelLivesView } from "@/components/parallel-lives";
+import { elijahJohnParallels } from "@/data/slides";
 
 export const metadata: Metadata = { title: "Week 4: The Legacy of Elijah — The Prophet Elijah" };
 
@@ -145,8 +147,9 @@ export default function Week4Page() {
         <p>
           John even dresses like Elijah (compare 2 Kings 1:8 and Matthew 3:4) and confronts a wicked
           royal marriage much as Elijah confronted Ahab and Jezebel &mdash; paying, like Elijah
-          nearly did, with his life.
+          nearly did, with his life. The parallels run further than the wardrobe:
         </p>
+        <ParallelLivesView parallels={elijahJohnParallels} className="max-w-none" />
         <p className="pt-1 text-sm">
           <Link href="/theology/john-the-baptist-and-elijah" className="font-medium text-gold-700 hover:underline dark:text-gold-400">
             Read the full theology of John the Baptist and Elijah →

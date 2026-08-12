@@ -6,6 +6,7 @@ export type SlideLayout =
   | "artifacts" // one or two real, sourced archaeological photos (see src/data/artifacts.ts)
   | "diagram" // a hand-drawn schematic of what the text states (see `diagramId`)
   | "compare" // two scripture passages set side by side
+  | "parallels" // two figures compared line by line (see `parallels`)
   | "cliffhanger"; // fades to black, then teases the next week
 
 export interface CompareBlock {
@@ -18,6 +19,23 @@ export interface CompareBlock {
   /** The near-identical wording shared by both passages, surfaced on its own. */
   sharedPhrase: string;
   note?: string;
+}
+
+/** One point of contact between two figures, for a "parallels" slide. */
+export interface ParallelRow {
+  /** The thing being compared, shown between the two columns. */
+  label: string;
+  left: string;
+  right: string;
+}
+
+export interface ParallelsBlock {
+  leftName: string;
+  leftSub?: string;
+  rightName: string;
+  rightSub?: string;
+  rows: ParallelRow[];
+  footnote?: string;
 }
 
 export interface Slide {
@@ -45,11 +63,69 @@ export interface Slide {
   /** Which hand-drawn schematic to render for "diagram" slides. */
   diagramId?: "carmel-altars";
   compare?: CompareBlock;
+  /** Two figures compared line by line, for "parallels" slides. */
+  parallels?: ParallelsBlock;
   /** What to tease at the end of a "cliffhanger" slide, e.g. "Week 2 & 3 — The Prophet Appears". */
   nextLabel?: string;
   /** Visual weight hook for scenes that should read as heavier/darker. */
   tone?: "dark";
 }
+
+/** The Elijah / John the Baptist comparison, shared by the Week 4 slide and page. */
+export const elijahJohnParallels: ParallelsBlock = {
+  leftName: "Elijah",
+  leftSub: "c. 870 BC · Israel",
+  rightName: "John the Baptist",
+  rightSub: "c. AD 28 · Judea",
+  rows: [
+    {
+      label: "Clothing",
+      left: "A garment of hair, a leather belt (2 Kings 1:8)",
+      right: "Camel's hair, a leather belt (Matthew 3:4)",
+    },
+    {
+      label: "Home ground",
+      left: "The wilderness — Cherith, the Negeb, Horeb",
+      right: "The wilderness of Judea, by the Jordan",
+    },
+    {
+      label: "Message",
+      left: "\"How long will you go limping between two opinions?\" (1 Kings 18:21)",
+      right: "\"Repent, for the kingdom of heaven is at hand.\" (Matthew 3:2)",
+    },
+    {
+      label: "Audience",
+      left: "All Israel summoned to Carmel to decide",
+      right: "All Judea going out to him to be baptized",
+    },
+    {
+      label: "Confronts a king",
+      left: "Ahab, to his face: \"You have troubled Israel.\"",
+      right: "Herod, to his face: \"It is not lawful for you to have her.\"",
+    },
+    {
+      label: "And a queen",
+      left: "Jezebel: \"So may the gods do to me... \" (1 Kings 19:2)",
+      right: "Herodias, who \"had a grudge against him and wanted to put him to death\" (Mark 6:19)",
+    },
+    {
+      label: "Water",
+      left: "Parts the Jordan with his cloak (2 Kings 2:8)",
+      right: "Baptizes in the Jordan (Matthew 3:6)",
+    },
+    {
+      label: "Successor",
+      left: "Elisha, who receives a double portion",
+      right: "Jesus, of whom John says \"He must increase\" (John 3:30)",
+    },
+    {
+      label: "Ending",
+      left: "Taken up alive in a whirlwind (2 Kings 2:11)",
+      right: "Beheaded in a prison cell (Mark 6:27)",
+    },
+  ],
+  footnote: "Same wilderness. Same belt. Same nerve in front of a throne. Very different endings.",
+};
 
 export const slides: Slide[] = [
   {
@@ -1040,55 +1116,513 @@ export const slides: Slide[] = [
     notes: "",
     scriptureRefs: ["1 Kings 19:15-21"],
   },
-  // Week 4
+  // Week 4 — The Legacy of Elijah
+  {
+    id: "w4-cold-open",
+    week: 4,
+    kicker: "Week 4 · Scene 1 — Cold Open",
+    title: "A Man in the Wilderness",
+    layout: "mystery",
+    quote: {
+      text: "In those days John the Baptist came preaching in the wilderness of Judea, \"Repent, for the kingdom of heaven is at hand.\"",
+      ref: "Matthew 3:1-2",
+    },
+    bullets: [
+      "Start here. Not with Elijah — with John.",
+      "What do you already remember about John the Baptist?",
+    ],
+    notes: "Open completely cold, with no explanation of why we are in Matthew on the last night of an Elijah study. Ask the room what they remember about John and take whatever comes: wilderness, repentance, baptism, locusts, preparing the way, the one who baptized Jesus. Write nothing on the board yet. The whole scene works only if nobody sees the connection coming, so resist the urge to hint at it.",
+    scriptureRefs: ["Matthew 3:1-6"],
+  },
+  {
+    id: "w4-leather-belt",
+    week: 4,
+    kicker: "Week 4 · Scene 2 — The Wardrobe",
+    title: "A Leather Belt Around His Waist",
+    layout: "compare",
+    compare: {
+      leftLabel: "ELIJAH",
+      leftRef: "2 Kings 1:8",
+      leftText: "\"He wore a garment of hair, with a belt of leather about his waist.\" — the description Ahaziah's messengers give, and the king knows instantly who it is: \"It is Elijah the Tishbite.\"",
+      rightLabel: "JOHN",
+      rightRef: "Matthew 3:4",
+      rightText: "\"Now John wore a garment of camel's hair and a leather belt around his waist, and his food was locusts and wild honey.\"",
+      sharedPhrase: "A leather belt around his waist.",
+      note: "Two men, roughly nine centuries apart, described in almost the same words.",
+    },
+    bullets: [],
+    notes: "Read the Matthew description first, then ask the question and wait: what does John have in common with Elijah? Let them find it themselves — somebody almost always gets there. Then read 2 Kings 1:8. The point worth making is that in 2 Kings the clothing is enough for a king to name the man; Matthew's readers are being handed the same clue. This is a detail the group discovers rather than one you announce, so do not step on it.",
+    scriptureRefs: ["2 Kings 1:8", "Matthew 3:4"],
+  },
+  {
+    id: "w4-elijah-john-parallels",
+    week: 4,
+    kicker: "Week 4 · Scene 3 — Two Prophets",
+    title: "Elijah and John, Side by Side",
+    layout: "parallels",
+    parallels: elijahJohnParallels,
+    bullets: [],
+    notes: "This is the slide to slow down on. Walk the rows out loud and let the room feel the pattern build — by the third or fourth line people start saying it before you do. Two things to draw out. First, the parallels are not decoration: Matthew and Mark are deliberately writing John in Elijah's clothes so their readers reach for Malachi. Second, the last row is where the comparison breaks, and that break matters — Elijah goes up in fire, John goes down in a dungeon, and Jesus still calls John the greatest born of women (Matthew 11:11). Faithfulness is not measured by how spectacular the exit is.",
+    scriptureRefs: ["2 Kings 1:8", "Matthew 3:1-6", "Mark 6:17-29", "1 Kings 18:21", "John 3:30"],
+  },
+  {
+    id: "w4-are-you-elijah",
+    week: 4,
+    kicker: "Week 4 · Scene 4 — The Interrogation",
+    title: "\"Are You Elijah?\"",
+    layout: "mystery",
+    quote: {
+      text: "And they asked him, \"What then? Are you Elijah?\" He said, \"I am not.\"",
+      ref: "John 1:21",
+    },
+    bullets: [
+      "The priests and Levites ask John directly.",
+      "He denies it directly.",
+      "But Jesus says of John: \"He is Elijah who is to come.\" (Matthew 11:14)",
+      "So — is John Elijah, or isn't he?",
+    ],
+    notes: "Do not answer this yet. Put both verses up, say them plainly, and let the contradiction sit in the room for a moment — an honest reader should feel the tension. Somebody will try to solve it early; take the answer, do not confirm it, and say we are going to let the Old Testament answer this one. Then go to Malachi.",
+    scriptureRefs: ["John 1:19-23", "Matthew 11:13-14"],
+  },
+  {
+    id: "w4-malachi",
+    week: 4,
+    kicker: "Week 4 · Scene 5 — The Last Words of the Old Testament",
+    title: "Behold, I Will Send You Elijah",
+    quote: {
+      text: "Behold, I will send you Elijah the prophet before the great and awesome day of the LORD comes. And he will turn the hearts of fathers to their children and the hearts of children to their fathers.",
+      ref: "Malachi 4:5-6",
+    },
+    bullets: [
+      "\"Behold, I send my messenger, and he will prepare the way before me.\" (Malachi 3:1)",
+      "These are the final words of the Old Testament.",
+      "Then four hundred years of silence.",
+      "Israel is left waiting for a prophet in a leather belt.",
+      "\"Turn the hearts\" — the same verb Elijah prayed at Carmel (1 Kings 18:37).",
+    ],
+    notes: "Two payoffs here. First, the plain historical one: the Old Testament ends by telling Israel to expect Elijah, which is exactly why priests are sent to interrogate a wilderness preacher about his identity — the question in John 1 is not random, it is the last unfinished business of the Hebrew Bible. Second, the callback to Week 2 and 3: Malachi's promise is that Elijah will 'turn the hearts,' and the whole of Carmel turned on Elijah praying 'that you have turned their hearts back.' The theme of this study is stitched straight into the promise.",
+    scriptureRefs: ["Malachi 3:1", "Malachi 4:5-6", "1 Kings 18:37"],
+  },
+  {
+    id: "w4-spirit-and-power",
+    week: 4,
+    kicker: "Week 4 · Scene 6 — The Answer",
+    title: "In the Spirit and Power of Elijah",
+    quote: {
+      text: "And he will go before him in the spirit and power of Elijah, to turn the hearts of the fathers to the children... to make ready for the Lord a people prepared.",
+      ref: "Luke 1:17",
+    },
+    bullets: [
+      "Gabriel says it before John is even born.",
+      "Not \"he is Elijah\" — \"in the spirit and power of Elijah.\"",
+      "John denies being Elijah returned in person. He is right. (John 1:21)",
+      "Jesus says John is the Elijah who was promised. He is also right. (Matthew 11:14; 17:12-13)",
+      "The office, the role, the spirit — not the man come back.",
+    ],
+    notes: "This is the resolution, so say it cleanly: John is not Elijah reincarnated, and Scripture never teaches reincarnation. He comes in Elijah's prophetic role and empowerment — calling a compromised nation to repentance and preparing the way for the Lord. Both statements stand. If someone asks why John would answer 'I am not' when Jesus says he is, the honest answer is that they are answering two different questions: the priests are asking about identity, Jesus is speaking about fulfillment.",
+    scriptureRefs: ["Luke 1:17", "John 1:21", "Matthew 11:14", "Matthew 17:11-13"],
+  },
+  {
+    id: "w4-back-to-the-mountain",
+    week: 4,
+    kicker: "Week 4 · Scene 7 — Full Circle",
+    title: "So Why Was Elijah on the Mountain?",
+    layout: "mystery",
+    quote: {
+      text: "And behold, there appeared to them Moses and Elijah, talking with him... And as they were coming down the mountain, Jesus commanded them, \"Tell no one the vision.\"",
+      ref: "Matthew 17:3, 9",
+    },
+    bullets: [
+      "Week 1 opened with this question. Why Moses? — the Law. Why Elijah?",
+      "The Prophets: the whole office that called Israel back to her covenant.",
+      "And immediately after, the disciples ask about Elijah coming first (17:10).",
+      "Jesus answers: \"Elijah has already come.\" They understood he spoke of John. (17:12-13)",
+      "Four weeks later, we are standing on the same mountain.",
+    ],
+    notes: "This is the hinge of the night. We began the entire study with two figures on a mountain and a question we refused to answer; now the answer arrives from two directions at once — Elijah stands there as the Prophets, and the disciples' own follow-up question about Elijah gets answered by pointing at John. Say out loud that Matthew 17 contains both halves. Then turn the corner: 'But we left Elijah himself in a very strange place.'",
+    scriptureRefs: ["Matthew 17:1-13"],
+  },
+  {
+    id: "w4-flashback",
+    week: 4,
+    kicker: "Week 4 · Scene 8 — Flashback",
+    title: "Nine Centuries Earlier...",
+    layout: "flashback",
+    flashbackLabel: "Nine Centuries Earlier...",
+    bullets: [],
+    notes: "A hard cut backwards. Say nothing over it; let the card land, then start the recap in a lower gear.",
+  },
+  {
+    id: "w4-carmel-recap",
+    week: 4,
+    kicker: "Week 4 · Scene 9 — Previously on Carmel",
+    title: "Everything Had Worked",
+    bullets: [
+      "Baal's prophets called from morning to noon. No voice. No answer. (18:26)",
+      "The fire of the LORD fell and consumed everything — even the water. (18:38)",
+      "Israel fell on their faces: \"The LORD, he is God.\" (18:39)",
+      "The prophets of Baal were seized and killed. (18:40)",
+      "The sky went black, and after three years the rain came. (18:45)",
+      "Elijah ran ahead of Ahab's chariot all the way to Jezreel. (18:46)",
+    ],
+    notes: "Move fast — this is a recap, not a re-teach. The point is the momentum: every single thing Elijah had prayed for happened. The nation confessed, the rain fell, and the prophet outran a chariot. Land on that, because the next slide is the drop.",
+    scriptureRefs: ["1 Kings 18:36-46"],
+  },
+  {
+    id: "w4-broom-tree",
+    week: 4,
+    kicker: "Week 4 · Scene 10 — The Broom Tree",
+    title: "It Is Enough",
+    tone: "dark",
+    quote: {
+      text: "It is enough; now, O LORD, take away my life, for I am no better than my fathers.",
+      ref: "1 Kings 19:4",
+    },
+    bullets: [
+      "Ahab tells Jezebel everything. (19:1)",
+      "Jezebel sends one messenger — not an army. One threat. (19:2)",
+      "\"Then he was afraid, and he arose and ran for his life.\" (19:3)",
+      "A day's journey into the wilderness. He sits down under a broom tree.",
+      "The man who faced 850 prophets asks God to kill him.",
+    ],
+    notes: "Ask it straight and then stop talking: how does a man go from the top of Carmel to under a broom tree — in about a day? Do not diagnose him for the group. Let them offer answers: exhaustion, adrenaline crash, isolation, the letdown after the mountaintop, the fact that nothing actually changed at the top — Jezebel is still queen and Baal is still funded. All of that is fair, and the text refuses to smooth any of it over. Say plainly that Scripture puts God's greatest prophet's suicidal despair on the page without embarrassment, and does not rebuke him for it.",
+    scriptureRefs: ["1 Kings 19:1-4"],
+  },
+  {
+    id: "w4-whisper",
+    week: 4,
+    kicker: "Week 4 · Scene 11 — Horeb",
+    title: "A Low Whisper",
+    bullets: [
+      "God's first answer is not a sermon. He lets him sleep. (19:5)",
+      "Then food, and water, and sleep again. Then more food. (19:6-7)",
+      "Forty days to Horeb — the mountain of Moses. (19:8)",
+      "A great wind. An earthquake. A fire. God is in none of them. (19:11-12)",
+      "And after the fire, the sound of a low whisper.",
+      "\"What are you doing here, Elijah?\" (19:9, 13)",
+    ],
+    notes: "Two observations worth the time. First, the pastoral order: God feeds and rests him twice before He says a word about ministry — the answer to a collapsed servant begins with bread and sleep. Second, the wind, earthquake and fire are exactly the phenomena of Sinai and of Carmel, and God deliberately is not in them this time. The prophet who called down fire is met in a whisper. God is not limited to the spectacular, and He does not owe the same answer twice.",
+    scriptureRefs: ["1 Kings 19:5-13"],
+  },
+  {
+    id: "w4-seven-thousand",
+    week: 4,
+    kicker: "Week 4 · Scene 12 — The Correction",
+    title: "Seven Thousand",
+    layout: "compare",
+    compare: {
+      leftLabel: "WHAT ELIJAH SEES",
+      leftRef: "1 Kings 19:14",
+      leftText: "\"I, even I only, am left, and they seek my life, to take it away.\"",
+      rightLabel: "WHAT GOD KNOWS",
+      rightRef: "1 Kings 19:18",
+      rightText: "\"Yet I will leave seven thousand in Israel, all the knees that have not bowed to Baal, and every mouth that has not kissed him.\"",
+      sharedPhrase: "He was never alone. He simply could not see them.",
+      note: "Paul cites this exact exchange in Romans 11:2-5 as the pattern of God's remnant, chosen by grace.",
+    },
+    bullets: [],
+    notes: "Notice the grammar in verse 18: 'I will leave seven thousand.' Not 'seven thousand held out' — God kept them. That is Paul's whole point in Romans 11: a remnant chosen by grace. And say the thing this study has been saying since Week 1 — the story is not ultimately about how great Elijah is, it is about how great God is, including when His servant cannot see one single thing God is doing.",
+    scriptureRefs: ["1 Kings 19:14-18", "Romans 11:2-5"],
+  },
+  {
+    id: "w4-elisha-called",
+    week: 4,
+    kicker: "Week 4 · Scene 13 — The Successor",
+    title: "Twelve Yoke of Oxen",
+    bullets: [
+      "God's cure for Elijah's despair includes a commission: three names. (19:15-16)",
+      "Hazael, king over Syria. Jehu, king over Israel. Elisha, prophet in your place.",
+      "Elijah finds Elisha plowing with twelve yoke of oxen — a wealthy man's farm.",
+      "He throws his cloak over him and keeps walking. (19:19)",
+      "Elisha slaughters the oxen and burns the plow to cook them. (19:21)",
+      "There is nothing left to come back to.",
+    ],
+    notes: "The main point is the burned plow: this is not a man keeping his options open. He destroys his own livelihood and follows. On the twelve yoke — it is tempting to read the twelve tribes into it, and it may be there, but the text does not say so; present it as an observation, not a claim. What the number does clearly establish is wealth. Elisha is not escaping poverty; he is leaving prosperity. And note the shape of the commission: God's answer to 'I alone am left' is 'here is who comes after you.'",
+    scriptureRefs: ["1 Kings 19:15-21"],
+  },
+  {
+    id: "w4-chariots-of-fire",
+    week: 4,
+    kicker: "Week 4 · Scene 14 — Elisha's Ministry",
+    title: "Those Who Are With Us",
+    quote: {
+      text: "Do not be afraid, for those who are with us are more than those who are with them.",
+      ref: "2 Kings 6:16",
+    },
+    bullets: [
+      "The Syrian army surrounds Dothan overnight, sent to capture one prophet. (6:13-14)",
+      "The servant sees it at dawn: \"Alas, my master! What shall we do?\" (6:15)",
+      "Elisha prays — not for an army, but for the young man's eyes to open.",
+      "\"The mountain was full of horses and chariots of fire all around Elisha.\" (6:17)",
+      "The help had been there the whole time. Only the seeing changed.",
+    ],
+    notes: "This is a fun one, so enjoy telling it. Then make the two connections. One: chariots of fire is precisely what shows up at Elijah's departure, and Elisha will cry out 'the chariots of Israel and its horsemen' as he watches — the same reality, seen twice. Two: this is the visual answer to the broom tree. Elijah could count one prophet and God counted seven thousand; the servant could count the Syrian army and God had the mountain full. What Elijah and Elisha could see was never the whole of what was there.",
+    scriptureRefs: ["2 Kings 6:8-17"],
+  },
+  {
+    id: "w4-hazael",
+    week: 4,
+    kicker: "Week 4 · Scene 15 — Beyond Israel",
+    title: "A King for Syria",
+    bullets: [
+      "Back at Horeb, God named a foreign king: Hazael, over Syria. (1 Kings 19:15)",
+      "Years later, Elisha is in Damascus when a dying king sends Hazael to ask about his illness. (2 Kings 8:7-9)",
+      "Elisha stares at him until Hazael is ashamed — and then the prophet weeps. (8:11)",
+      "He tells Hazael what he will do to Israel, and that he will be king. (8:12-13)",
+      "The next day, Hazael smothers his master and takes the throne. (8:15)",
+      "God appoints kings who do not worship Him — and remains in charge of them.",
+    ],
+    notes: "Do not get tangled tonight in why Elijah was told to anoint Hazael while Elisha is the one who delivers the word — it is a real question, but it is not the point of the scene, and the simplest reading is that the commission passes down with the cloak. The larger point carries the night: Elijah's ministry is tied to God's purposes for the nations, not just for Israel. Hazael is a genuinely documented figure of Syrian history, and he becomes God's instrument of judgment on the northern kingdom. The God who answers by fire on Carmel is also the God who is quietly appointing kings in Damascus.",
+    scriptureRefs: ["1 Kings 19:15-17", "2 Kings 8:7-15"],
+  },
+  {
+    id: "w4-the-land-is-mine",
+    week: 4,
+    kicker: "Week 4 · Scene 16 — Before You Read Naboth",
+    title: "\"The Land Is Mine\"",
+    layout: "mystery",
+    quote: {
+      text: "The land shall not be sold in perpetuity, for the land is mine. For you are strangers and sojourners with me.",
+      ref: "Leviticus 25:23",
+    },
+    bullets: [
+      "Question first: what does God's law actually say about selling ancestral land?",
+      "Israel's land was not ordinary real estate. It was allotted by God, by tribe and family.",
+      "Even a sale was really a lease, redeemable by a kinsman, released at Jubilee. (25:24-28)",
+      "So keep that in mind when a king offers a fair price for a vineyard.",
+    ],
+    notes: "Ask the question before you read anything, because most people meet Naboth assuming he is being stubborn about a good offer. He is not. He is refusing to hand over what God gave his fathers, on the basis of God's own law. Ahab's offer of a better vineyard or a fair price is not generous — it is a request to treat as property what God explicitly said was His. Set this up properly and the next scene reads completely differently.",
+    scriptureRefs: ["Leviticus 25:23-28", "Numbers 36:7"],
+  },
   {
     id: "w4-naboth",
     week: 4,
-    kicker: "Week 4 — The Legacy of Elijah",
-    title: "Naboth's Vineyard",
-    bullets: ["Jezebel's false accusation and murder", "Elijah's direct confrontation", "Judgment pronounced on Ahab's house"],
-    notes: "",
-    scriptureRefs: ["1 Kings 21"],
+    kicker: "Week 4 · Scene 17 — Naboth's Vineyard",
+    title: "Have You Killed, and Also Taken Possession?",
+    tone: "dark",
+    bullets: [
+      "\"The LORD forbid that I should give you the inheritance of my fathers.\" (21:3)",
+      "Ahab goes home, lies on his bed, turns his face to the wall, and will not eat. (21:4)",
+      "Jezebel writes letters in Ahab's name, seals them with Ahab's seal. (21:8)",
+      "A fast is proclaimed. Two worthless men swear Naboth cursed God and the king.",
+      "Naboth is taken outside the city and stoned. It is all perfectly legal. (21:13)",
+      "Ahab goes down to take possession — and Elijah is standing in the vineyard. (21:17-19)",
+    ],
+    notes: "The chilling detail is the machinery: false witnesses, a religious fast, due process, royal seals. Evil here does not break the law, it uses it. And notice how the murder is framed as piety. Then Elijah appears out of nowhere, exactly as he did in chapter 17, and Ahab's greeting says everything: 'Have you found me, O my enemy?' The judgment is specific — dogs will lick Ahab's blood where they licked Naboth's, and Jezebel will be eaten by dogs by the wall of Jezreel. Hold onto both; the text pays them off in chapters 22 and 2 Kings 9.",
+    scriptureRefs: ["1 Kings 21:1-24"],
+  },
+  {
+    id: "w4-ahab-humbles-himself",
+    week: 4,
+    kicker: "Week 4 · Scene 18 — The Surprise",
+    title: "And Ahab Humbled Himself",
+    quote: {
+      text: "Have you seen how Ahab has humbled himself before me? Because he has humbled himself before me, I will not bring the disaster in his days.",
+      ref: "1 Kings 21:29",
+    },
+    bullets: [
+      "He tears his clothes. Puts on sackcloth. Fasts. Lies in sackcloth. Goes about dejectedly. (21:27)",
+      "God Himself points it out to Elijah — and calls it real.",
+      "The judgment is not cancelled. It is delayed a generation. (21:29)",
+      "This is the man who sold himself to do evil, who built Baal's temple, who let Naboth die.",
+      "And God still honors the humility that is there.",
+    ],
+    notes: "Include this — it is the most surprising verse in the chapter and it complicates the villain in a way the group will remember. Ahab does not become a good king; his pattern of life does not change, and he dies under judgment in the very next chapter. But God notices genuine humility even in a wicked man and responds to it with mercy. Ask what that says about God rather than about Ahab. It is also a useful check on how we read repentance — neither cynically dismissing it nor pretending it settles everything.",
+    scriptureRefs: ["1 Kings 21:25-29"],
   },
   {
     id: "w4-micaiah",
     week: 4,
-    kicker: "Week 4 — The Legacy of Elijah",
-    title: "Micaiah's Warning; Death of Ahab",
-    bullets: ["One honest prophet vs. 400 court prophets", "Ahab disguises himself — and dies anyway", "Fulfilled exactly as foretold"],
-    notes: "",
-    scriptureRefs: ["1 Kings 22"],
-  },
-  {
-    id: "w4-departure",
-    week: 4,
-    kicker: "Week 4 — The Legacy of Elijah",
-    title: "Elijah's Departure",
-    bullets: ["The Jordan parts again, echoing Joshua and Moses", "A chariot of fire; a whirlwind", "Elijah does not die"],
-    notes: "",
-    scriptureRefs: ["2 Kings 2:1-11"],
-  },
-  {
-    id: "w4-cloak",
-    week: 4,
-    kicker: "Week 4 — The Legacy of Elijah",
-    title: "The Cloak to Elisha",
-    bullets: ["A double portion — the firstborn's inheritance", "Elisha parts the Jordan himself", "'The spirit of Elijah rests on Elisha'"],
-    notes: "",
-    scriptureRefs: ["2 Kings 2:9-15"],
-  },
-  {
-    id: "w4-christ",
-    week: 4,
-    kicker: "Week 4 — The Legacy of Elijah",
-    title: "Everything Points to Christ",
+    kicker: "Week 4 · Scene 19 — Four Hundred to One",
+    title: "\"But I Hate Him\"",
     bullets: [
-      "John the Baptist — Elijah's spirit and power",
-      "The Transfiguration — Law, Prophets, and Fulfillment",
-      "James 5 — Elijah's prayer, and ours",
-      "'I have not come to abolish... but to fulfill'",
+      "Ahab wants Ramoth-gilead back, and asks Jehoshaphat of Judah to go with him. (22:3-4)",
+      "Four hundred prophets, in one voice: \"Go up, for the Lord will give it into the hand of the king.\" (22:6)",
+      "Jehoshaphat, uneasy: \"Is there not here another prophet of the LORD?\" (22:7)",
+      "Ahab: \"There is yet one man... but I hate him, for he never prophesies good concerning me.\" (22:8)",
+      "Micaiah tells him the truth: Israel scattered on the mountains, and the king will not come home. (22:17)",
+      "Ahab has him imprisoned on bread and water — and marches anyway. (22:26-29)",
     ],
-    notes: "Close by inviting reflection: what in this series most reshaped how you read the Old Testament?",
-    scriptureRefs: ["Matthew 5:17", "James 5:17-18"],
+    notes: "The comedy in verse 8 is real, so let the room laugh: Ahab admits there is a prophet who tells the truth and says he hates him for exactly that reason. Then land the pattern, because it connects straight back to Week 1's distinction between knowing God and surrendering to Him. Ahab is never short of information. He has watched fire fall on Carmel, he has heard Elijah's judgment, he has humbled himself before God, and here he is handed the truth one more time — and he goes and does what he wanted to do in the first place. Micaiah's throne-room vision of the lying spirit is worth reading if there is time; if there is not, the one-line version is that even the deception that draws Ahab to his death happens under God's permission.",
+    scriptureRefs: ["1 Kings 22:1-28"],
+  },
+  {
+    id: "w4-ahab-dies",
+    week: 4,
+    kicker: "Week 4 · Scene 20 — A Bow Drawn at Random",
+    title: "Exactly as the LORD Had Said",
+    tone: "dark",
+    bullets: [
+      "Ahab disguises himself, specifically so the prophecy cannot find him. (22:30)",
+      "\"But a certain man drew his bow at random and struck the king of Israel between the scale armor and the breastplate.\" (22:34)",
+      "He is propped up in his chariot, facing the Syrians, and bleeds out by evening. (22:35)",
+      "They wash the chariot at the pool of Samaria, and the dogs lick up his blood. (22:38)",
+      "\"According to the word of the LORD that he had spoken.\"",
+    ],
+    notes: "Two things. First, the theology of the random arrow: an anonymous soldier fires without aiming, and it lands in the one gap in a king's armor. Scripture calls that the word of the LORD being fulfilled. No disguise, no precaution, no strategy outruns a word God has already spoken. Second, hold Ahab's whole arc together — a king who repented genuinely in chapter 21 and still died under judgment in chapter 22, because the mercy he received delayed the disaster on his house, not the consequence of his own choices.",
+    scriptureRefs: ["1 Kings 22:29-40", "1 Kings 21:19"],
+  },
+  {
+    id: "w4-jezebel-end",
+    week: 4,
+    kicker: "Week 4 · Scene 21 — Jezebel",
+    title: "By the Wall of Jezreel",
+    tone: "dark",
+    bullets: [
+      "She is not simply Ahab's wife. She imported Baal, funded 850 prophets, and hunted God's.",
+      "Years after Ahab's death, Jehu rides into Jezreel. (2 Kings 9:30)",
+      "She paints her eyes, adorns her head, and meets him from a window — regal to the last.",
+      "Her own eunuchs throw her down. (9:33)",
+      "\"They found no more of her than the skull and the feet and the palms of her hands.\" (9:35)",
+      "Elijah had said it, in a stolen vineyard, twenty years earlier. (9:36; 1 Kings 21:23)",
+    ],
+    notes: "Give her the weight she deserves as the antagonist of the whole storyline — the Baal crisis of these chapters is hers before it is Ahab's. Then read the fulfillment note in 9:36-37, where Jehu himself quotes Elijah. The narrator is deliberately closing a loop opened in chapter 21. This is grim material; do not linger on the gore, land on the reliability of the word instead.",
+    scriptureRefs: ["2 Kings 9:30-37", "1 Kings 21:23"],
+  },
+  {
+    id: "w4-jezebel-revelation",
+    week: 4,
+    kicker: "Week 4 · Scene 22 — Wait, What?",
+    title: "Jezebel in the New Testament",
+    quote: {
+      text: "But I have this against you, that you tolerate that woman Jezebel, who calls herself a prophetess and is teaching and seducing my servants to practice sexual immorality and to eat food sacrificed to idols.",
+      ref: "Revelation 2:20",
+    },
+    bullets: [
+      "Jesus, writing to the church at Thyatira, nine centuries later.",
+      "Nobody thinks this is the queen herself.",
+      "Her name has become the label for idolatry dressed up as teaching inside God's own people.",
+      "Baal worship. Sexual immorality. Food sacrificed to idols. The same package.",
+      "The threat did not die by the wall of Jezreel.",
+    ],
+    notes: "This should get an audible reaction, so let it. The point is not trivia — it is that Scripture treats what happened under Ahab as a live category, not a closed chapter of ancient history. Ask the room what the modern equivalent looks like: not a shrine on a hill, but the same trade — comfort, prosperity, sexual license, whatever the culture is selling — offered inside the church and tolerated by it. Jesus's complaint at Thyatira is not that Jezebel exists; it is that they tolerate her.",
+    scriptureRefs: ["Revelation 2:18-23"],
+  },
+  {
+    id: "w4-ahaziah",
+    week: 4,
+    kicker: "Week 4 · Scene 23 — The Next Generation",
+    title: "Is There No God in Israel?",
+    quote: {
+      text: "Is it because there is no God in Israel that you are going to inquire of Baal-zebub, the god of Ekron?",
+      ref: "2 Kings 1:3",
+    },
+    bullets: [
+      "Ahaziah, Ahab's son: \"He served Baal and worshiped him.\" (1 Kings 22:52-53)",
+      "He falls through a lattice in his upper chamber and is injured. (2 Kings 1:2)",
+      "And he sends messengers — past every prophet in Israel — to a Philistine god at Ekron.",
+      "Elijah intercepts them on the road with one question.",
+      "That question is the entire study in a single sentence.",
+    ],
+    notes: "Everything this study has covered is compressed into 2 Kings 1:3. Carmel answered the question publicly, with fire, in front of the whole nation — and one generation later the king of Israel still sends to a foreign god for a weather report on his own life. Ask the group whether that is stupidity or something worse; the honest answer is that it is the same limp between two opinions that Elijah named in 18:21, now hereditary. Note also the name: Baal-zebub, 'lord of the flies,' almost certainly a deliberate Israelite mockery of Baal-zebul, 'Baal the prince' — and the name the New Testament later uses for Satan himself (Matthew 12:24).",
+    scriptureRefs: ["1 Kings 22:51-53", "2 Kings 1:1-16"],
+  },
+  {
+    id: "w4-final-journey",
+    week: 4,
+    kicker: "Week 4 · Scene 24 — The Long Walk",
+    title: "Gilgal. Bethel. Jericho. Jordan.",
+    bullets: [
+      "Elijah knows. Elisha knows. The prophets at every stop know. (2 Kings 2:3, 5)",
+      "Three times: \"Please stay here.\" Three times: \"As the LORD lives, I will not leave you.\"",
+      "Fifty prophets stand at a distance to watch. (2:7)",
+      "Elijah rolls up his cloak and strikes the water. It parts. They cross on dry ground. (2:8)",
+      "The Red Sea under Moses. This same river under Joshua. Now this.",
+    ],
+    notes: "Slow all the way down here — you have been moving through history at speed all night and this scene needs air. The three stops are not travel logistics; they are Elisha refusing to be left behind, three times, which is what makes his request in the next scene something other than ambition. And the Jordan parting deliberately puts Elijah in the company of Moses and Joshua. The study opened on a mountain with Moses; it is ending at a river with the same imagery.",
+    scriptureRefs: ["2 Kings 2:1-8"],
+  },
+  {
+    id: "w4-double-portion",
+    week: 4,
+    kicker: "Week 4 · Scene 25 — The Inheritance",
+    title: "A Double Portion",
+    quote: {
+      text: "Please let there be a double portion of your spirit on me.",
+      ref: "2 Kings 2:9",
+    },
+    bullets: [
+      "Not twice Elijah's power — the firstborn son's share of an inheritance. (Deuteronomy 21:17)",
+      "Elisha is asking to be recognized as Elijah's true heir.",
+      "\"You have asked a hard thing; yet, if you see me... it shall be so.\" (2:10)",
+      "It is not Elijah's to give. Only God can grant it — so the sign is whether God lets him see.",
+    ],
+    notes: "Clear up the common misreading here: the double portion is inheritance language from Deuteronomy 21:17, not a request to out-do his master. Elisha wants the firstborn's share of a prophetic legacy. Elijah's answer is honest about the limits of his own authority — he cannot hand out the Spirit of God, so the granting of it will be shown by whether Elisha is permitted to witness what happens next.",
+    scriptureRefs: ["2 Kings 2:9-10", "Deuteronomy 21:17"],
+  },
+  {
+    id: "w4-whirlwind",
+    week: 4,
+    kicker: "Week 4 · Scene 26 — The Departure",
+    title: "And Elijah Went Up",
+    layout: "cliffhanger",
+    quote: {
+      text: "And as they still went on and talked, behold, chariots of fire and horses of fire separated the two of them. And Elijah went up by a whirlwind into heaven.",
+      ref: "2 Kings 2:11",
+    },
+    nextLabel: "Cut to black",
+    bullets: [],
+    notes: "Read it and stop. Do not explain it, do not add a line, do not move the slide for a few seconds. Elisha cries out 'My father, my father! The chariots of Israel and its horsemen!' — the real defense of the nation was never its army — and then he sees him no more, and tears his own clothes in two. Elijah does not die. Of everyone in Scripture, only he and Enoch leave this way. Cut to black.",
+    scriptureRefs: ["2 Kings 2:11-12"],
+  },
+  {
+    id: "w4-god-remains",
+    week: 4,
+    kicker: "Week 4 · Scene 27 — End Credits",
+    title: "God Remains",
+    bullets: [
+      "Elijah is bold — but God is powerful.",
+      "Elijah is afraid — but God is faithful.",
+      "Elijah thinks he is alone — but God has seven thousand.",
+      "Elijah's ministry ends — but the cloak falls, and the water parts again.",
+      "Elijah disappears — but God remains.",
+      "We never studied Elijah because Elijah is the hero. We studied Elijah to see God.",
+    ],
+    notes: "This is the landing of the whole four weeks, so say it slowly and do not rush to the post-credits scene. Every line has a chapter behind it that the room has now walked through. If they leave remembering Elijah's courage, it was a good study; if they leave remembering the God who sends fire, sends bread, keeps seven thousand, and never once loses control of the story, it was the study the text was asking for.",
+    scriptureRefs: ["1 Kings 19:18", "2 Kings 2:14"],
+  },
+  {
+    id: "w4-post-credits",
+    week: 4,
+    kicker: "Week 4 · Scene 28",
+    title: "Post-Credits Scene",
+    layout: "cliffhanger",
+    quote: {
+      text: "They have the power to shut the sky, that no rain may fall during the days of their prophesying.",
+      ref: "Revelation 11:6",
+    },
+    nextLabel: "Revelation 11",
+    bullets: [],
+    notes: "Beat of silence, then: 'There's one more scene.' Before reading any further, say the disclaimer out loud and mean it — everything in the next slide is inference, not something Scripture states.",
+  },
+  {
+    id: "w4-two-witnesses",
+    week: 4,
+    kicker: "Week 4 · Scene 29 — The Two Witnesses",
+    title: "Speculation, Clearly Labeled",
+    bullets: [
+      "Two witnesses prophesy 1,260 days in sackcloth. (11:3)",
+      "Fire pours from their mouths and consumes their enemies. (11:5)",
+      "They shut the sky so that no rain falls. (11:6)",
+      "They turn water to blood and strike the earth with plagues. (11:6)",
+      "They are killed, lie unburied three and a half days, are raised, and go up in a cloud. (11:7-12)",
+      "Revelation never names them.",
+    ],
+    notes: "Say the caveat first and repeat it after: the text does not identify these two, faithful interpreters land in several different places, and none of what follows is a doctrine to hold anyone to. Then simply lay the details next to the story we have just finished. Shutting the sky, and fire — whose ministry is that? Water to blood, and plagues — whose is that? Views in the room will include Moses and Elijah, Enoch and Elijah, and the symbolic reading in which the two witnesses picture the church's prophetic testimony (two witnesses being what the law requires to establish truth, Deuteronomy 19:15). Let all of them be voiced. Do not adjudicate.",
+    scriptureRefs: ["Revelation 11:3-13"],
+  },
+  {
+    id: "w4-cut",
+    week: 4,
+    kicker: "Week 4 · Scene 30",
+    title: "Behold, I Will Send You Elijah",
+    layout: "cliffhanger",
+    quote: {
+      text: "Behold, I will send you Elijah the prophet before the great and awesome day of the LORD comes.",
+      ref: "Malachi 4:5",
+    },
+    nextLabel: "To be continued",
+    bullets: [],
+    notes: "Do not solve it. We began on a mountain with Moses and Elijah beside Jesus, and we end with the promise still open and the room still thinking. Read the verse, hold the black screen, and close in prayer.",
   },
 ];
